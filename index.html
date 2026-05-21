@@ -545,18 +545,35 @@
                 </div>
             </section>
 
-            <!-- Flights (screen-inspired cards) -->
+            <!-- Flights: details + shared Drive for e-tickets / PNR -->
             <section
                 id="flights"
                 class="space-y-6"
                 aria-labelledby="flights-heading"
             >
-                <h2
-                    id="flights-heading"
-                    class="font-headline-md text-[24px] text-primary"
-                >
-                    Flights
-                </h2>
+                <div class="flex flex-wrap justify-between items-end gap-3">
+                    <h2
+                        id="flights-heading"
+                        class="font-headline-md text-[24px] text-primary"
+                    >
+                        Flights
+                    </h2>
+                    <div class="flex flex-wrap gap-2 justify-end">
+                        <a
+                            href="./Air%20Ticket_Taiwan%202026.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex min-h-[40px] shrink-0 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-xs sm:text-sm font-bold text-on-primary no-underline shadow-sm hover:opacity-95 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                        >
+                            <span
+                                class="material-symbols-outlined text-[20px]"
+                                aria-hidden="true"
+                                >picture_as_pdf</span
+                            >
+                            Booking Information
+                        </a>
+                    </div>
+                </div>
                 <div class="space-y-4">
                     <div
                         class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-mist-gray shadow-sm"
@@ -594,6 +611,11 @@
                                     >
                                         Manila
                                     </p>
+                                    <p
+                                        class="text-caption text-on-surface-variant mt-0.5"
+                                    >
+                                        NAIA T1
+                                    </p>
                                 </div>
                                 <div
                                     class="flex-1 px-2 sm:px-4 flex flex-col items-center min-w-0"
@@ -610,7 +632,7 @@
                                     <p
                                         class="text-[10px] text-cloud-shadow mt-2"
                                     >
-                                        EVA AIR
+                                        EVA Air · BR 262
                                     </p>
                                 </div>
                                 <div class="text-center">
@@ -624,6 +646,27 @@
                                     >
                                         Taoyuan
                                     </p>
+                                    <p
+                                        class="text-caption text-on-surface-variant mt-0.5"
+                                    >
+                                        Terminal 2
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="grid grid-cols-2 gap-3 rounded-lg bg-mist-gray/20 p-3 text-caption"
+                            >
+                                <div>
+                                    <p
+                                        class="text-cloud-shadow font-bold uppercase tracking-wide"
+                                    >
+                                        Flight
+                                    </p>
+                                    <p
+                                        class="font-label-bold text-body-md text-deep-ink"
+                                    >
+                                        BR 262
+                                    </p>
                                 </div>
                             </div>
                             <div
@@ -631,10 +674,10 @@
                             >
                                 <div>
                                     <p class="text-caption text-cloud-shadow">
-                                        Schedule
+                                        Departure / arrival (local)
                                     </p>
                                     <p class="font-label-bold text-deep-ink">
-                                        10:00 AM – 3:00 PM
+                                        5:45 AM MNL → 8:05 AM TPE
                                     </p>
                                 </div>
                                 <div class="text-right">
@@ -642,12 +685,13 @@
                                         Date
                                     </p>
                                     <p class="font-label-bold text-primary">
-                                        Sat, Jun 13
+                                        Sat, Jun 13, 2026
                                     </p>
                                 </div>
                             </div>
                             <p class="text-caption text-on-surface-variant">
-                                Di pa sure to, paki check na lang ulit.
+                                *Airline may still adjust gate or aircraft;
+                                check EVA / airport screens on day of travel.
                             </p>
                         </div>
                     </div>
@@ -686,6 +730,11 @@
                                     >
                                         Taoyuan
                                     </p>
+                                    <p
+                                        class="text-caption text-on-surface-variant mt-0.5"
+                                    >
+                                        Terminal 2
+                                    </p>
                                 </div>
                                 <div
                                     class="flex-1 px-2 sm:px-4 flex flex-col items-center min-w-0"
@@ -702,7 +751,7 @@
                                     <p
                                         class="text-[10px] text-cloud-shadow mt-2"
                                     >
-                                        EVA AIR
+                                        EVA Air · BR 261
                                     </p>
                                 </div>
                                 <div class="text-center">
@@ -716,6 +765,27 @@
                                     >
                                         Manila
                                     </p>
+                                    <p
+                                        class="text-caption text-on-surface-variant mt-0.5"
+                                    >
+                                        NAIA T1
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="grid grid-cols-2 gap-3 rounded-lg bg-mist-gray/20 p-3 text-caption"
+                            >
+                                <div>
+                                    <p
+                                        class="text-cloud-shadow font-bold uppercase tracking-wide"
+                                    >
+                                        Flight
+                                    </p>
+                                    <p
+                                        class="font-label-bold text-body-md text-deep-ink"
+                                    >
+                                        BR 261
+                                    </p>
                                 </div>
                             </div>
                             <div
@@ -723,10 +793,10 @@
                             >
                                 <div>
                                     <p class="text-caption text-cloud-shadow">
-                                        Schedule
+                                        Departure / arrival (local)
                                     </p>
                                     <p class="font-label-bold text-deep-ink">
-                                        08:00 PM – 10:00 PM
+                                        8:30 PM TPE → 10:50 PM MNL
                                     </p>
                                 </div>
                                 <div class="text-right">
@@ -734,12 +804,12 @@
                                         Date
                                     </p>
                                     <p class="font-label-bold text-primary">
-                                        Thu, Jun 18
+                                        Thu, Jun 18, 2026
                                     </p>
                                 </div>
                             </div>
                             <p class="text-caption text-on-surface-variant">
-                                Di pa rin sure to, paki check na lang ulit.
+                                *Same booking record as MNL > TPE flight.
                             </p>
                         </div>
                     </div>
@@ -969,7 +1039,7 @@
                                 <dd
                                     class="font-bold text-on-surface text-right"
                                 >
-                                    June 13
+                                    June 14
                                 </dd>
                                 <dt class="text-cloud-shadow">Departure</dt>
                                 <dd
