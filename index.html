@@ -1,765 +1,1474 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="light" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Taiwan 2026 trip hub — flights, hotels, expenses, itinerary for five travelers." />
-    <meta property="og:title" content="Taiwan 2026 — Trip Hub" />
-    <meta property="og:image" content="screen.png" />
-    <title>Taiwan 2026 — Trip Hub</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
-      rel="stylesheet"
-    />
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "on-surface-variant": "#3d494a",
-              "on-primary-container": "#00363b",
-              "surface-dim": "#d9dadb",
-              "surface-container-highest": "#e1e3e4",
-              "surface-container-high": "#e7e8e9",
-              "on-surface": "#191c1d",
-              "primary-fixed": "#87f3ff",
-              "on-secondary-container": "#6d0005",
-              "tertiary-container": "#cca72f",
-              "deep-ink": "#0F1419",
-              "secondary-fixed": "#ffdad5",
-              "on-primary-fixed": "#001f23",
-              background: "#f8f9fa",
-              "primary-container": "#00a8b5",
-              "primary-fixed-dim": "#59d8e5",
-              primary: "#006971",
-              "mist-gray": "#E8EEF4",
-              "tertiary-fixed": "#ffe088",
-              "surface-variant": "#e1e3e4",
-              "on-tertiary-container": "#4e3d00",
-              outline: "#6d797b",
-              surface: "#f8f9fa",
-              "surface-container-lowest": "#ffffff",
-              "cloud-shadow": "#9FB0C3",
-              "sky-active": "#3D9AED",
-              secondary: "#ac332a",
-              "surface-container-low": "#f3f4f5",
-              "inverse-on-surface": "#f0f1f2",
-              error: "#ba1a1a",
-              "surface-container": "#edeeef",
-              "on-tertiary": "#ffffff",
-              "on-error": "#ffffff",
-              "on-primary": "#ffffff",
-              "on-secondary-fixed": "#410001",
-              "error-container": "#ffdad6",
-              "on-secondary": "#ffffff",
-              "on-error-container": "#93000a",
-              "slate-blue": "#1A222D",
-              tertiary: "#735c00",
-              "on-secondary-fixed-variant": "#8b1a16",
-              "on-tertiary-fixed": "#241a00",
-              "surface-bright": "#f8f9fa",
-              "outline-variant": "#bcc9cb",
-              "surface-tint": "#006971",
-              "on-primary-fixed-variant": "#004f55",
-              "secondary-container": "#fd6e60",
-              "secondary-fixed-dim": "#ffb4aa",
-              "on-background": "#191c1d",
-              "tertiary-fixed-dim": "#e9c349",
-              "on-tertiary-fixed-variant": "#574500",
-              "inverse-surface": "#2e3132",
-              "inverse-primary": "#59d8e5",
-            },
-            borderRadius: {
-              DEFAULT: "0.25rem",
-              lg: "0.5rem",
-              xl: "0.75rem",
-              full: "9999px",
-            },
-            spacing: {
-              unit: "8px",
-              "margin-mobile": "24px",
-              "container-max": "1280px",
-              "margin-desktop": "64px",
-              gutter: "24px",
-              "section-gap": "120px",
-            },
-            fontFamily: {
-              "headline-xl": ["Plus Jakarta Sans", "system-ui", "sans-serif"],
-              caption: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
-              "label-bold": ["Plus Jakarta Sans", "system-ui", "sans-serif"],
-              "headline-xl-mobile": ["Plus Jakarta Sans", "system-ui", "sans-serif"],
-              "headline-md": ["Plus Jakarta Sans", "system-ui", "sans-serif"],
-              "headline-lg": ["Plus Jakarta Sans", "system-ui", "sans-serif"],
-              "body-lg": ["Plus Jakarta Sans", "system-ui", "sans-serif"],
-              "body-md": ["Plus Jakarta Sans", "system-ui", "sans-serif"],
-            },
-            fontSize: {
-              "headline-xl": ["64px", { lineHeight: "72px", letterSpacing: "-0.02em", fontWeight: "800" }],
-              caption: ["12px", { lineHeight: "16px", fontWeight: "500" }],
-              "label-bold": ["14px", { lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "700" }],
-              "headline-xl-mobile": ["40px", { lineHeight: "48px", letterSpacing: "-0.01em", fontWeight: "800" }],
-              "headline-md": ["32px", { lineHeight: "40px", fontWeight: "700" }],
-              "headline-lg": ["48px", { lineHeight: "56px", fontWeight: "700" }],
-              "body-lg": ["20px", { lineHeight: "32px", fontWeight: "400" }],
-              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
-            },
-          },
-        },
-      };
-    </script>
-    <style>
-      .material-symbols-outlined {
-        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-      }
-      .glass-card {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(20px);
-      }
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      body {
-        min-height: max(884px, 100dvh);
-      }
-      section[id] {
-        scroll-margin-top: 5.5rem;
-      }
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      .skip-link:focus {
-        position: fixed;
-        left: 1rem;
-        top: 1rem;
-        z-index: 60;
-        width: auto;
-        height: auto;
-        margin: 0;
-        padding: 0.5rem 0.75rem;
-        clip: auto;
-        overflow: visible;
-        white-space: normal;
-        background: #fff;
-        color: #006971;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 24px rgba(15, 20, 25, 0.15);
-        font-weight: 700;
-      }
-      @media print {
-        .dock,
-        .bottom-dock,
-        .fab-skip,
-        .skip-link {
-          display: none !important;
-        }
-        body {
-          padding-bottom: 0 !important;
-        }
-        main {
-          max-width: 100% !important;
-        }
-      }
-    </style>
-  </head>
-  <body class="bg-background text-on-surface font-body-md antialiased pb-28">
-    <a class="skip-link sr-only" href="#main">Skip to content</a>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Taiwan 2026 trip hub — flights, hotels, expenses, itinerary for five travelers."
+        />
+        <meta property="og:title" content="Taiwan 2026 — Trip Hub" />
+        <meta property="og:image" content="screen.png" />
+        <title>Taiwan 2026 — Trip Hub</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+            rel="stylesheet"
+        />
+        <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            "on-surface-variant": "#3d494a",
+                            "on-primary-container": "#00363b",
+                            "surface-dim": "#d9dadb",
+                            "surface-container-highest": "#e1e3e4",
+                            "surface-container-high": "#e7e8e9",
+                            "on-surface": "#191c1d",
+                            "primary-fixed": "#87f3ff",
+                            "on-secondary-container": "#6d0005",
+                            "tertiary-container": "#cca72f",
+                            "deep-ink": "#0F1419",
+                            "secondary-fixed": "#ffdad5",
+                            "on-primary-fixed": "#001f23",
+                            background: "#f8f9fa",
+                            "primary-container": "#00a8b5",
+                            "primary-fixed-dim": "#59d8e5",
+                            primary: "#006971",
+                            "mist-gray": "#E8EEF4",
+                            "tertiary-fixed": "#ffe088",
+                            "surface-variant": "#e1e3e4",
+                            "on-tertiary-container": "#4e3d00",
+                            outline: "#6d797b",
+                            surface: "#f8f9fa",
+                            "surface-container-lowest": "#ffffff",
+                            "cloud-shadow": "#9FB0C3",
+                            "sky-active": "#3D9AED",
+                            secondary: "#ac332a",
+                            "surface-container-low": "#f3f4f5",
+                            "inverse-on-surface": "#f0f1f2",
+                            error: "#ba1a1a",
+                            "surface-container": "#edeeef",
+                            "on-tertiary": "#ffffff",
+                            "on-error": "#ffffff",
+                            "on-primary": "#ffffff",
+                            "on-secondary-fixed": "#410001",
+                            "error-container": "#ffdad6",
+                            "on-secondary": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "slate-blue": "#1A222D",
+                            tertiary: "#735c00",
+                            "on-secondary-fixed-variant": "#8b1a16",
+                            "on-tertiary-fixed": "#241a00",
+                            "surface-bright": "#f8f9fa",
+                            "outline-variant": "#bcc9cb",
+                            "surface-tint": "#006971",
+                            "on-primary-fixed-variant": "#004f55",
+                            "secondary-container": "#fd6e60",
+                            "secondary-fixed-dim": "#ffb4aa",
+                            "on-background": "#191c1d",
+                            "tertiary-fixed-dim": "#e9c349",
+                            "on-tertiary-fixed-variant": "#574500",
+                            "inverse-surface": "#2e3132",
+                            "inverse-primary": "#59d8e5",
+                        },
+                        borderRadius: {
+                            DEFAULT: "0.25rem",
+                            lg: "0.5rem",
+                            xl: "0.75rem",
+                            full: "9999px",
+                        },
+                        spacing: {
+                            unit: "8px",
+                            "margin-mobile": "24px",
+                            "container-max": "1280px",
+                            "margin-desktop": "64px",
+                            gutter: "24px",
+                            "section-gap": "120px",
+                        },
+                        fontFamily: {
+                            "headline-xl": [
+                                "Plus Jakarta Sans",
+                                "system-ui",
+                                "sans-serif",
+                            ],
+                            caption: [
+                                "Plus Jakarta Sans",
+                                "system-ui",
+                                "sans-serif",
+                            ],
+                            "label-bold": [
+                                "Plus Jakarta Sans",
+                                "system-ui",
+                                "sans-serif",
+                            ],
+                            "headline-xl-mobile": [
+                                "Plus Jakarta Sans",
+                                "system-ui",
+                                "sans-serif",
+                            ],
+                            "headline-md": [
+                                "Plus Jakarta Sans",
+                                "system-ui",
+                                "sans-serif",
+                            ],
+                            "headline-lg": [
+                                "Plus Jakarta Sans",
+                                "system-ui",
+                                "sans-serif",
+                            ],
+                            "body-lg": [
+                                "Plus Jakarta Sans",
+                                "system-ui",
+                                "sans-serif",
+                            ],
+                            "body-md": [
+                                "Plus Jakarta Sans",
+                                "system-ui",
+                                "sans-serif",
+                            ],
+                        },
+                        fontSize: {
+                            "headline-xl": [
+                                "64px",
+                                {
+                                    lineHeight: "72px",
+                                    letterSpacing: "-0.02em",
+                                    fontWeight: "800",
+                                },
+                            ],
+                            caption: [
+                                "12px",
+                                { lineHeight: "16px", fontWeight: "500" },
+                            ],
+                            "label-bold": [
+                                "14px",
+                                {
+                                    lineHeight: "20px",
+                                    letterSpacing: "0.05em",
+                                    fontWeight: "700",
+                                },
+                            ],
+                            "headline-xl-mobile": [
+                                "40px",
+                                {
+                                    lineHeight: "48px",
+                                    letterSpacing: "-0.01em",
+                                    fontWeight: "800",
+                                },
+                            ],
+                            "headline-md": [
+                                "32px",
+                                { lineHeight: "40px", fontWeight: "700" },
+                            ],
+                            "headline-lg": [
+                                "48px",
+                                { lineHeight: "56px", fontWeight: "700" },
+                            ],
+                            "body-lg": [
+                                "20px",
+                                { lineHeight: "32px", fontWeight: "400" },
+                            ],
+                            "body-md": [
+                                "16px",
+                                { lineHeight: "24px", fontWeight: "400" },
+                            ],
+                        },
+                    },
+                },
+            };
+        </script>
+        <link rel="stylesheet" href="./css/site.css" />
+    </head>
+    <body class="bg-background text-on-surface font-body-md antialiased pb-28">
+        <a class="skip-link sr-only" href="#main">Skip to content</a>
 
-    <!-- Top bar (matches screen: menu + title area + avatar) -->
-    <header class="bg-surface/70 backdrop-blur-xl border-b border-mist-gray dock top-0 sticky z-50 flex justify-between items-center px-margin-mobile h-16 w-full">
-      <div class="flex items-center gap-3">
-        <span class="material-symbols-outlined text-primary" aria-hidden="true">menu</span>
-        <p class="font-headline-md text-[20px] text-deep-ink tracking-tight">Taiwan 2026</p>
-      </div>
-      <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold overflow-hidden border-2 border-white shadow-sm" aria-hidden="true">
-        <img alt="" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC8nXGxGHhHsyAR-_ldl87biA4R6HAREil0CH3jFzZMQU7Q6l93rAAO9MJn4UXMHoMEj3Rkm5G7nuoCcjWRsxF1CImuVlWuPE_zcuMbcDLZxosYmBXa_jedze_hEKd2t79dY0TWAQ6Wm9EWRuS679L7mmVxMJptRq4c4SkGN3S7jaHrbyqbk0PKrZywVUG5LouHJxSasuthTngWSjrDuHXhFlfb8Xbr3ZuWODOZVxhgTBFK4n80A3UKHKbH0yJt1k7Izz3oJLW4-8" width="40" height="40" />
-      </div>
-    </header>
+        <!-- Top bar (matches screen: menu + title area + avatar) -->
+        <header
+            class="bg-surface/70 backdrop-blur-xl border-b border-mist-gray dock top-0 sticky z-50 flex justify-between items-center px-margin-mobile h-16 w-full"
+        >
+            <div class="flex items-center gap-3">
+                <span
+                    class="material-symbols-outlined text-primary"
+                    aria-hidden="true"
+                    >menu</span
+                >
+                <p
+                    class="font-headline-md text-[20px] text-deep-ink tracking-tight"
+                >
+                    KKMG Taiwan 2026
+                </p>
+            </div>
+            <div
+                class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold overflow-hidden border-2 border-white shadow-sm"
+                aria-hidden="true"
+            >
+                <img
+                    alt=""
+                    class="w-full h-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC8nXGxGHhHsyAR-_ldl87biA4R6HAREil0CH3jFzZMQU7Q6l93rAAO9MJn4UXMHoMEj3Rkm5G7nuoCcjWRsxF1CImuVlWuPE_zcuMbcDLZxosYmBXa_jedze_hEKd2t79dY0TWAQ6Wm9EWRuS679L7mmVxMJptRq4c4SkGN3S7jaHrbyqbk0PKrZywVUG5LouHJxSasuthTngWSjrDuHXhFlfb8Xbr3ZuWODOZVxhgTBFK4n80A3UKHKbH0yJt1k7Izz3oJLW4-8"
+                    width="40"
+                    height="40"
+                />
+            </div>
+        </header>
 
-    <main id="main" class="max-w-[600px] mx-auto px-margin-mobile pt-8 space-y-10">
-      <!-- Hero (DESIGN.md: impact headline + airy subtitle; screen.png: Trip Hub + meta line) -->
-      <section id="glance" class="space-y-2">
-        <h1 class="font-headline-xl-mobile text-headline-xl-mobile text-deep-ink">Trip hub</h1>
-        <p class="font-body-lg text-body-lg text-on-surface-variant">2026 · 6 days · 5 people · <span class="text-secondary font-semibold">TWD 12,000</span> <span class="text-cloud-shadow font-normal">(sample budget)</span></p>
-      </section>
+        <main
+            id="main"
+            class="max-w-[600px] mx-auto px-margin-mobile pt-8 space-y-10"
+        >
+            <!-- Hero (DESIGN.md: impact headline + airy subtitle; screen.png: Trip Hub + meta line) -->
+            <section id="glance" class="space-y-2">
+                <h1
+                    class="font-headline-xl-mobile text-headline-xl-mobile text-deep-ink"
+                >
+                    Trip hub
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant">
+                    2026 · 6 days · 5 people ·
+                    <span class="text-secondary font-semibold">TWD 12,000</span>
+                    <span class="text-cloud-shadow font-normal"
+                        >(sample budget)</span
+                    >
+                </p>
+            </section>
 
-      <!-- At a glance — bento aligned to screen.png -->
-      <section class="space-y-6" aria-labelledby="at-a-glance-heading">
-        <h2 id="at-a-glance-heading" class="font-headline-md text-[24px] text-primary">At a glance</h2>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="col-span-2 bg-surface-container-lowest p-6 rounded-xl shadow-[0px_12px_32px_rgba(15,20,25,0.04)] border border-mist-gray flex items-center justify-between">
-            <div>
-              <p class="font-label-bold text-caption text-cloud-shadow uppercase tracking-wider">Trip dates</p>
-              <p class="font-headline-md text-[20px] text-deep-ink mt-1">Jan 22 – Jan 27</p>
-              <p class="text-caption text-on-surface-variant mt-2">Police <strong class="text-error">110</strong> · Fire / ambulance <strong class="text-error">119</strong></p>
-            </div>
-            <span class="material-symbols-outlined text-primary-container text-4xl" aria-hidden="true">calendar_month</span>
-          </div>
-          <div class="bg-surface-container-lowest p-5 rounded-xl border border-mist-gray flex flex-col justify-between min-h-[8.5rem]">
-            <span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true">flight</span>
-            <div>
-              <p class="font-label-bold text-caption text-cloud-shadow">Flight</p>
-              <p class="font-body-md font-bold text-on-surface">Pacific Airlines</p>
-              <p class="text-caption text-on-surface-variant">PA 123</p>
-            </div>
-          </div>
-          <div class="bg-surface-container-lowest p-5 rounded-xl border border-mist-gray flex flex-col justify-between min-h-[8.5rem]">
-            <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">apartment</span>
-            <div>
-              <p class="font-label-bold text-caption text-cloud-shadow">Hotel</p>
-              <p class="font-body-md font-bold text-on-surface">Grand Hyatt</p>
-              <p class="text-caption text-on-surface-variant">Xinyi District</p>
-            </div>
-          </div>
-          <div class="bg-surface-container-lowest p-5 rounded-xl border border-mist-gray flex flex-col justify-between min-h-[8.5rem]">
-            <span class="material-symbols-outlined text-sky-active text-2xl" aria-hidden="true">wb_cloudy</span>
-            <div>
-              <p class="font-label-bold text-caption text-cloud-shadow">Weather</p>
-              <p class="font-body-md font-bold text-on-surface">Taipei 18°C</p>
-              <p class="text-caption text-on-surface-variant">Check before outings</p>
-            </div>
-          </div>
-          <div class="bg-surface-container-lowest p-5 rounded-xl border border-mist-gray flex flex-col justify-between min-h-[8.5rem]">
-            <span class="material-symbols-outlined text-tertiary text-2xl" aria-hidden="true">account_balance_wallet</span>
-            <div>
-              <p class="font-label-bold text-caption text-cloud-shadow">Budget</p>
-              <p class="font-body-md font-bold text-secondary">TWD 12k</p>
-              <p class="text-caption text-on-surface-variant">Per person est.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+            <!-- At a glance — bento aligned to screen.png -->
+            <section class="space-y-6" aria-labelledby="at-a-glance-heading">
+                <h2
+                    id="at-a-glance-heading"
+                    class="font-headline-md text-[24px] text-primary"
+                >
+                    At a glance
+                </h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div
+                        class="col-span-2 bg-surface-container-lowest p-6 rounded-xl shadow-[0px_12px_32px_rgba(15,20,25,0.04)] border border-mist-gray flex items-center justify-between"
+                    >
+                        <div>
+                            <p
+                                class="font-label-bold text-caption text-cloud-shadow uppercase tracking-wider"
+                            >
+                                Trip dates
+                            </p>
+                            <p
+                                class="font-headline-md text-[20px] text-deep-ink mt-1"
+                            >
+                                Jan 22 – Jan 27
+                            </p>
+                            <p
+                                class="text-caption text-on-surface-variant mt-2"
+                            >
+                                Police <strong class="text-error">110</strong> ·
+                                Fire / ambulance
+                                <strong class="text-error">119</strong>
+                            </p>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-primary-container text-4xl"
+                            aria-hidden="true"
+                            >calendar_month</span
+                        >
+                    </div>
+                    <div
+                        class="bg-surface-container-lowest p-5 rounded-xl border border-mist-gray flex flex-col justify-between min-h-[8.5rem]"
+                    >
+                        <span
+                            class="material-symbols-outlined text-primary text-2xl"
+                            aria-hidden="true"
+                            >flight</span
+                        >
+                        <div>
+                            <p
+                                class="font-label-bold text-caption text-cloud-shadow"
+                            >
+                                Flight
+                            </p>
+                            <p class="font-body-md font-bold text-on-surface">
+                                Pacific Airlines
+                            </p>
+                            <p class="text-caption text-on-surface-variant">
+                                PA 123
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-surface-container-lowest p-5 rounded-xl border border-mist-gray flex flex-col justify-between min-h-[8.5rem]"
+                    >
+                        <span
+                            class="material-symbols-outlined text-secondary text-2xl"
+                            aria-hidden="true"
+                            >apartment</span
+                        >
+                        <div>
+                            <p
+                                class="font-label-bold text-caption text-cloud-shadow"
+                            >
+                                Hotel
+                            </p>
+                            <p class="font-body-md font-bold text-on-surface">
+                                Grand Hyatt
+                            </p>
+                            <p class="text-caption text-on-surface-variant">
+                                Xinyi District
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-surface-container-lowest p-5 rounded-xl border border-mist-gray flex flex-col justify-between min-h-[8.5rem]"
+                    >
+                        <span
+                            class="material-symbols-outlined text-sky-active text-2xl"
+                            aria-hidden="true"
+                            >wb_cloudy</span
+                        >
+                        <div>
+                            <p
+                                class="font-label-bold text-caption text-cloud-shadow"
+                            >
+                                Weather
+                            </p>
+                            <p class="font-body-md font-bold text-on-surface">
+                                Taipei 18°C
+                            </p>
+                            <p class="text-caption text-on-surface-variant">
+                                Check before outings
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-surface-container-lowest p-5 rounded-xl border border-mist-gray flex flex-col justify-between min-h-[8.5rem]"
+                    >
+                        <span
+                            class="material-symbols-outlined text-tertiary text-2xl"
+                            aria-hidden="true"
+                            >account_balance_wallet</span
+                        >
+                        <div>
+                            <p
+                                class="font-label-bold text-caption text-cloud-shadow"
+                            >
+                                Budget
+                            </p>
+                            <p class="font-body-md font-bold text-secondary">
+                                TWD 12k
+                            </p>
+                            <p class="text-caption text-on-surface-variant">
+                                Per person est.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-      <!-- Members (screen.png + code.html) -->
-      <section id="members" class="space-y-6" aria-labelledby="members-heading">
-        <h2 id="members-heading" class="font-headline-md text-[24px] text-primary">Members</h2>
-        <div class="space-y-3">
-          <div class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray">
-            <img alt="" class="w-12 h-12 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6UDvZy3fDx_xf2HoGuDx2Kzoe6XbyUiUlvPJUVihz_0BzjK3pq4RVvcSvu2Kkoi1W60jDjYT0qPc5KxIYfhqpP0mmDlEJwSSAnG-FDsLfuuJq7ySg0H2AEiPeMiglsZw5zEap9bbFbqA7MDqy2lAhALv5eiUh7bb0Khxt1rK2uItVL_InuVff6cx6vZYqHIWLU7GshEnO8BjNhrCzOUh-3GyMQiWbw38ArvzITTE7nGMZeWdXybavsif25bWuh0tV0bJULm-HQXU" width="48" height="48" />
-            <div class="flex-1 min-w-0">
-              <p class="font-label-bold text-body-md text-deep-ink">Alex Chen</p>
-              <p class="font-caption text-caption text-on-surface-variant">Organizer</p>
-            </div>
-            <div class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center shrink-0" aria-hidden="true">
-              <span class="material-symbols-outlined text-cloud-shadow text-sm">chat</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray">
-            <img alt="" class="w-12 h-12 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoqcOIsFKsrohgXaTgOB76x7izCS3dtkL7stYoewHabb0Dk2jyCcHfEpl6VWyLHwc7rQUvKlufXZlCOapu55cR865UbCXFFZp_l5ZBeXI6q37-2YH2gLYrUCzHxccRFp71GUxReIgTQ3tKmv90cZrDA6-4LZN0BxxeiqrJ-uEzTw0BIreFsCAzOo4XrmFnlML5ZQx5d5k9rXYhO2vi6-DC7P2aMAayD7ibQyo1uC-Ko6fpocvkMHKFmxTy47QwPHVlWJs4DAti4F8" width="48" height="48" />
-            <div class="flex-1 min-w-0">
-              <p class="font-label-bold text-body-md text-deep-ink">Sarah Lee</p>
-              <p class="font-caption text-caption text-on-surface-variant">Accountant</p>
-            </div>
-            <div class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center shrink-0" aria-hidden="true">
-              <span class="material-symbols-outlined text-cloud-shadow text-sm">chat</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray">
-            <img alt="" class="w-12 h-12 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrj5mX2ghEh3DcRqC6RT2VOsIyFNwyzKgH09xsluBm8bWhPAzm-Qz2-4DvZd75qB-6rImo1nzGe5WB73tBpAGehrjl5UsbnTNFrD_mP056f4y7WYki5-opwTDA9mIwJZ9C4FUFNoM1AJH5fMh7LcV-7qb6b0tqrLKtOfAoELgVEvmlClfepCo3ksjXyc_y0CQgiFH3Cuql5VTmPLRGk2tcmUp3JunizZo9k4gr4brKQbDWxb7AE7Y7qPq-RhelzqudjPtVG_8on3c" width="48" height="48" />
-            <div class="flex-1 min-w-0">
-              <p class="font-label-bold text-body-md text-deep-ink">Mark Tan</p>
-              <p class="font-caption text-caption text-on-surface-variant">Driver</p>
-            </div>
-            <div class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center shrink-0" aria-hidden="true">
-              <span class="material-symbols-outlined text-cloud-shadow text-sm">chat</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray">
-            <div class="w-12 h-12 rounded-full bg-primary-fixed/50 flex items-center justify-center text-on-primary-fixed-variant font-headline-md text-[14px] font-extrabold shrink-0" aria-hidden="true">JL</div>
-            <div class="flex-1 min-w-0">
-              <p class="font-label-bold text-body-md text-deep-ink">Jamie Lee</p>
-              <p class="font-caption text-caption text-on-surface-variant">Outbound flight booking</p>
-            </div>
-            <div class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center shrink-0" aria-hidden="true">
-              <span class="material-symbols-outlined text-cloud-shadow text-sm">chat</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray">
-            <div class="w-12 h-12 rounded-full bg-tertiary-fixed/60 flex items-center justify-center text-on-tertiary-fixed-variant font-headline-md text-[14px] font-extrabold shrink-0" aria-hidden="true">TW</div>
-            <div class="flex-1 min-w-0">
-              <p class="font-label-bold text-body-md text-deep-ink">Taylor Wu</p>
-              <p class="font-caption text-caption text-on-surface-variant">Nav &amp; transit lead</p>
-            </div>
-            <div class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center shrink-0" aria-hidden="true">
-              <span class="material-symbols-outlined text-cloud-shadow text-sm">chat</span>
-            </div>
-          </div>
-          <div class="flex items-center justify-center py-2">
-            <p class="text-primary font-label-bold flex items-center gap-2">
-              <span class="material-symbols-outlined" aria-hidden="true">groups</span> All 5 members
-            </p>
-          </div>
-        </div>
-      </section>
+            <!-- Members (screen.png + code.html) -->
+            <section
+                id="members"
+                class="space-y-6"
+                aria-labelledby="members-heading"
+            >
+                <h2
+                    id="members-heading"
+                    class="font-headline-md text-[24px] text-primary"
+                >
+                    Members
+                </h2>
+                <div class="space-y-3">
+                    <div
+                        class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray"
+                    >
+                        <img
+                            alt=""
+                            class="w-12 h-12 rounded-full"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6UDvZy3fDx_xf2HoGuDx2Kzoe6XbyUiUlvPJUVihz_0BzjK3pq4RVvcSvu2Kkoi1W60jDjYT0qPc5KxIYfhqpP0mmDlEJwSSAnG-FDsLfuuJq7ySg0H2AEiPeMiglsZw5zEap9bbFbqA7MDqy2lAhALv5eiUh7bb0Khxt1rK2uItVL_InuVff6cx6vZYqHIWLU7GshEnO8BjNhrCzOUh-3GyMQiWbw38ArvzITTE7nGMZeWdXybavsif25bWuh0tV0bJULm-HQXU"
+                            width="48"
+                            height="48"
+                        />
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="font-label-bold text-body-md text-deep-ink"
+                            >
+                                Alex Chen
+                            </p>
+                            <p
+                                class="font-caption text-caption text-on-surface-variant"
+                            >
+                                Organizer
+                            </p>
+                        </div>
+                        <div
+                            class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center shrink-0"
+                            aria-hidden="true"
+                        >
+                            <span
+                                class="material-symbols-outlined text-cloud-shadow text-sm"
+                                >chat</span
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray"
+                    >
+                        <img
+                            alt=""
+                            class="w-12 h-12 rounded-full"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoqcOIsFKsrohgXaTgOB76x7izCS3dtkL7stYoewHabb0Dk2jyCcHfEpl6VWyLHwc7rQUvKlufXZlCOapu55cR865UbCXFFZp_l5ZBeXI6q37-2YH2gLYrUCzHxccRFp71GUxReIgTQ3tKmv90cZrDA6-4LZN0BxxeiqrJ-uEzTw0BIreFsCAzOo4XrmFnlML5ZQx5d5k9rXYhO2vi6-DC7P2aMAayD7ibQyo1uC-Ko6fpocvkMHKFmxTy47QwPHVlWJs4DAti4F8"
+                            width="48"
+                            height="48"
+                        />
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="font-label-bold text-body-md text-deep-ink"
+                            >
+                                Sarah Lee
+                            </p>
+                            <p
+                                class="font-caption text-caption text-on-surface-variant"
+                            >
+                                Accountant
+                            </p>
+                        </div>
+                        <div
+                            class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center shrink-0"
+                            aria-hidden="true"
+                        >
+                            <span
+                                class="material-symbols-outlined text-cloud-shadow text-sm"
+                                >chat</span
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray"
+                    >
+                        <img
+                            alt=""
+                            class="w-12 h-12 rounded-full"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrj5mX2ghEh3DcRqC6RT2VOsIyFNwyzKgH09xsluBm8bWhPAzm-Qz2-4DvZd75qB-6rImo1nzGe5WB73tBpAGehrjl5UsbnTNFrD_mP056f4y7WYki5-opwTDA9mIwJZ9C4FUFNoM1AJH5fMh7LcV-7qb6b0tqrLKtOfAoELgVEvmlClfepCo3ksjXyc_y0CQgiFH3Cuql5VTmPLRGk2tcmUp3JunizZo9k4gr4brKQbDWxb7AE7Y7qPq-RhelzqudjPtVG_8on3c"
+                            width="48"
+                            height="48"
+                        />
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="font-label-bold text-body-md text-deep-ink"
+                            >
+                                Mark Tan
+                            </p>
+                            <p
+                                class="font-caption text-caption text-on-surface-variant"
+                            >
+                                Driver
+                            </p>
+                        </div>
+                        <div
+                            class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center shrink-0"
+                            aria-hidden="true"
+                        >
+                            <span
+                                class="material-symbols-outlined text-cloud-shadow text-sm"
+                                >chat</span
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray"
+                    >
+                        <div
+                            class="w-12 h-12 rounded-full bg-primary-fixed/50 flex items-center justify-center text-on-primary-fixed-variant font-headline-md text-[14px] font-extrabold shrink-0"
+                            aria-hidden="true"
+                        >
+                            JL
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="font-label-bold text-body-md text-deep-ink"
+                            >
+                                Jamie Lee
+                            </p>
+                            <p
+                                class="font-caption text-caption text-on-surface-variant"
+                            >
+                                Outbound flight booking
+                            </p>
+                        </div>
+                        <div
+                            class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center shrink-0"
+                            aria-hidden="true"
+                        >
+                            <span
+                                class="material-symbols-outlined text-cloud-shadow text-sm"
+                                >chat</span
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray"
+                    >
+                        <div
+                            class="w-12 h-12 rounded-full bg-tertiary-fixed/60 flex items-center justify-center text-on-tertiary-fixed-variant font-headline-md text-[14px] font-extrabold shrink-0"
+                            aria-hidden="true"
+                        >
+                            TW
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="font-label-bold text-body-md text-deep-ink"
+                            >
+                                Taylor Wu
+                            </p>
+                            <p
+                                class="font-caption text-caption text-on-surface-variant"
+                            >
+                                Nav &amp; transit lead
+                            </p>
+                        </div>
+                        <div
+                            class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center shrink-0"
+                            aria-hidden="true"
+                        >
+                            <span
+                                class="material-symbols-outlined text-cloud-shadow text-sm"
+                                >chat</span
+                            >
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center py-2">
+                        <p
+                            class="text-primary font-label-bold flex items-center gap-2"
+                        >
+                            <span
+                                class="material-symbols-outlined"
+                                aria-hidden="true"
+                                >groups</span
+                            >
+                            All 5 members
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-      <!-- Flights (screen-inspired cards) -->
-      <section id="flights" class="space-y-6" aria-labelledby="flights-heading">
-        <h2 id="flights-heading" class="font-headline-md text-[24px] text-primary">Flights</h2>
-        <div class="space-y-4">
-          <div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-mist-gray shadow-sm">
-            <div class="bg-primary p-4 flex justify-between items-center text-on-primary">
-              <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined" aria-hidden="true">flight_takeoff</span>
-                <span class="font-label-bold">Flight to Taipei</span>
-              </div>
-              <span class="font-label-bold text-caption bg-on-primary/20 px-3 py-1 rounded-full">Departure</span>
-            </div>
-            <div class="p-5 space-y-4">
-              <div class="flex justify-between items-center gap-2">
-                <div class="text-center">
-                  <p class="text-headline-md text-[24px] text-deep-ink">SFO</p>
-                  <p class="text-caption text-cloud-shadow uppercase">San Francisco</p>
-                </div>
-                <div class="flex-1 px-2 sm:px-4 flex flex-col items-center min-w-0">
-                  <div class="w-full h-px bg-mist-gray relative">
-                    <span class="material-symbols-outlined absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-container bg-surface-container-lowest px-1" aria-hidden="true">flight</span>
-                  </div>
-                  <p class="text-[10px] text-cloud-shadow mt-2">PA 123</p>
-                </div>
-                <div class="text-center">
-                  <p class="text-headline-md text-[24px] text-deep-ink">TPE</p>
-                  <p class="text-caption text-cloud-shadow uppercase">Taoyuan</p>
-                </div>
-              </div>
-              <div class="flex flex-wrap justify-between gap-2 pt-4 border-t border-mist-gray">
-                <div>
-                  <p class="text-caption text-cloud-shadow">Schedule</p>
-                  <p class="font-label-bold text-deep-ink">10:00 AM – 3:00 PM</p>
-                </div>
-                <div class="text-right">
-                  <p class="text-caption text-cloud-shadow">Date</p>
-                  <p class="font-label-bold text-primary">Wed, Jan 22</p>
-                </div>
-              </div>
-              <p class="text-caption text-on-surface-variant">Swap airline, times, and record locator in <code class="text-primary">index.html</code>. Keep PDFs in private storage.</p>
-            </div>
-          </div>
+            <!-- Flights (screen-inspired cards) -->
+            <section
+                id="flights"
+                class="space-y-6"
+                aria-labelledby="flights-heading"
+            >
+                <h2
+                    id="flights-heading"
+                    class="font-headline-md text-[24px] text-primary"
+                >
+                    Flights
+                </h2>
+                <div class="space-y-4">
+                    <div
+                        class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-mist-gray shadow-sm"
+                    >
+                        <div
+                            class="bg-primary p-4 flex justify-between items-center text-on-primary"
+                        >
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="material-symbols-outlined"
+                                    aria-hidden="true"
+                                    >flight_takeoff</span
+                                >
+                                <span class="font-label-bold"
+                                    >Flight to Taipei</span
+                                >
+                            </div>
+                            <span
+                                class="font-label-bold text-caption bg-on-primary/20 px-3 py-1 rounded-full"
+                                >Departure</span
+                            >
+                        </div>
+                        <div class="p-5 space-y-4">
+                            <div
+                                class="flex justify-between items-center gap-2"
+                            >
+                                <div class="text-center">
+                                    <p
+                                        class="text-headline-md text-[24px] text-deep-ink"
+                                    >
+                                        SFO
+                                    </p>
+                                    <p
+                                        class="text-caption text-cloud-shadow uppercase"
+                                    >
+                                        San Francisco
+                                    </p>
+                                </div>
+                                <div
+                                    class="flex-1 px-2 sm:px-4 flex flex-col items-center min-w-0"
+                                >
+                                    <div
+                                        class="w-full h-px bg-mist-gray relative"
+                                    >
+                                        <span
+                                            class="material-symbols-outlined absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-container bg-surface-container-lowest px-1"
+                                            aria-hidden="true"
+                                            >flight</span
+                                        >
+                                    </div>
+                                    <p
+                                        class="text-[10px] text-cloud-shadow mt-2"
+                                    >
+                                        PA 123
+                                    </p>
+                                </div>
+                                <div class="text-center">
+                                    <p
+                                        class="text-headline-md text-[24px] text-deep-ink"
+                                    >
+                                        TPE
+                                    </p>
+                                    <p
+                                        class="text-caption text-cloud-shadow uppercase"
+                                    >
+                                        Taoyuan
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex flex-wrap justify-between gap-2 pt-4 border-t border-mist-gray"
+                            >
+                                <div>
+                                    <p class="text-caption text-cloud-shadow">
+                                        Schedule
+                                    </p>
+                                    <p class="font-label-bold text-deep-ink">
+                                        10:00 AM – 3:00 PM
+                                    </p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-caption text-cloud-shadow">
+                                        Date
+                                    </p>
+                                    <p class="font-label-bold text-primary">
+                                        Wed, Jan 22
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="text-caption text-on-surface-variant">
+                                Swap airline, times, and record locator in
+                                <code class="text-primary">index.html</code>.
+                                Keep PDFs in private storage.
+                            </p>
+                        </div>
+                    </div>
 
-          <div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-mist-gray shadow-sm">
-            <div class="bg-on-surface-variant p-4 flex justify-between items-center text-white">
-              <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined" aria-hidden="true">flight_land</span>
-                <span class="font-label-bold">Flight back</span>
-              </div>
-              <span class="font-label-bold text-caption bg-white/15 px-3 py-1 rounded-full">Return</span>
-            </div>
-            <div class="p-5 space-y-4">
-              <div class="flex justify-between items-center gap-2">
-                <div class="text-center">
-                  <p class="text-headline-md text-[24px] text-deep-ink">TPE</p>
-                  <p class="text-caption text-cloud-shadow uppercase">Taoyuan</p>
+                    <div
+                        class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-mist-gray shadow-sm"
+                    >
+                        <div
+                            class="bg-on-surface-variant p-4 flex justify-between items-center text-white"
+                        >
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="material-symbols-outlined"
+                                    aria-hidden="true"
+                                    >flight_land</span
+                                >
+                                <span class="font-label-bold">Flight back</span>
+                            </div>
+                            <span
+                                class="font-label-bold text-caption bg-white/15 px-3 py-1 rounded-full"
+                                >Return</span
+                            >
+                        </div>
+                        <div class="p-5 space-y-4">
+                            <div
+                                class="flex justify-between items-center gap-2"
+                            >
+                                <div class="text-center">
+                                    <p
+                                        class="text-headline-md text-[24px] text-deep-ink"
+                                    >
+                                        TPE
+                                    </p>
+                                    <p
+                                        class="text-caption text-cloud-shadow uppercase"
+                                    >
+                                        Taoyuan
+                                    </p>
+                                </div>
+                                <div
+                                    class="flex-1 px-2 sm:px-4 flex flex-col items-center min-w-0"
+                                >
+                                    <div
+                                        class="w-full h-px bg-mist-gray relative"
+                                    >
+                                        <span
+                                            class="material-symbols-outlined absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-surface-variant bg-surface-container-lowest px-1"
+                                            aria-hidden="true"
+                                            >flight</span
+                                        >
+                                    </div>
+                                    <p
+                                        class="text-[10px] text-cloud-shadow mt-2"
+                                    >
+                                        PA 456
+                                    </p>
+                                </div>
+                                <div class="text-center">
+                                    <p
+                                        class="text-headline-md text-[24px] text-deep-ink"
+                                    >
+                                        SFO
+                                    </p>
+                                    <p
+                                        class="text-caption text-cloud-shadow uppercase"
+                                    >
+                                        San Francisco
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex flex-wrap justify-between gap-2 pt-4 border-t border-mist-gray"
+                            >
+                                <div>
+                                    <p class="text-caption text-cloud-shadow">
+                                        Schedule
+                                    </p>
+                                    <p class="font-label-bold text-deep-ink">
+                                        8:00 PM – 1:00 PM (+1)
+                                    </p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-caption text-cloud-shadow">
+                                        Date
+                                    </p>
+                                    <p class="font-label-bold text-primary">
+                                        Mon, Jan 27
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex-1 px-2 sm:px-4 flex flex-col items-center min-w-0">
-                  <div class="w-full h-px bg-mist-gray relative">
-                    <span class="material-symbols-outlined absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-surface-variant bg-surface-container-lowest px-1" aria-hidden="true">flight</span>
-                  </div>
-                  <p class="text-[10px] text-cloud-shadow mt-2">PA 456</p>
-                </div>
-                <div class="text-center">
-                  <p class="text-headline-md text-[24px] text-deep-ink">SFO</p>
-                  <p class="text-caption text-cloud-shadow uppercase">San Francisco</p>
-                </div>
-              </div>
-              <div class="flex flex-wrap justify-between gap-2 pt-4 border-t border-mist-gray">
-                <div>
-                  <p class="text-caption text-cloud-shadow">Schedule</p>
-                  <p class="font-label-bold text-deep-ink">8:00 PM – 1:00 PM (+1)</p>
-                </div>
-                <div class="text-right">
-                  <p class="text-caption text-cloud-shadow">Date</p>
-                  <p class="font-label-bold text-primary">Mon, Jan 27</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </section>
 
-      <!-- Hotels -->
-      <section id="hotels" class="space-y-6" aria-labelledby="hotels-heading">
-        <div class="flex justify-between items-end gap-2">
-          <h2 id="hotels-heading" class="font-headline-md text-[24px] text-primary">Hotels</h2>
-          <a href="#hotels" class="text-caption text-primary font-bold no-underline hover:underline">See all</a>
-        </div>
-        <div class="space-y-4">
-          <article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-mist-gray group">
-            <div class="relative h-32 overflow-hidden">
-              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Hotel lobby" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK8CaBXLL39p53kAyh6c-lqVlMYMrYxj1etD9KdlwJXVvIvWPYs-H56PtJfou_D5obVuFqgZbpMtjNY4Ols9gip5BCsnYhF5s9Ucyuh_eCxYlblGt4DCMchXR5Er3swICFUv3w0ciZU1CwBTl8aBaJww7D_e_J9AHUHh-oW9FL4JRvcBKEzBur7lq5tSCOKZO3JzJOQq73F-OXKlIjnQxpNYFH30au29r_j4qym0_P-S4PidW6-2gBeOhe60_GMQl7hvzMVhPrf2I" />
-              <div class="absolute top-3 right-3 glass-card px-3 py-1 rounded-full border border-mist-gray">
-                <p class="font-label-bold text-caption text-primary">3 nights</p>
-              </div>
-            </div>
-            <div class="p-5">
-              <h3 class="font-label-bold text-body-lg text-deep-ink">Grand Hyatt Taipei</h3>
-              <p class="text-caption text-on-surface-variant flex items-center gap-1 mt-1">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">location_on</span>
-                Xinyi District · sample address in HTML
-              </p>
-              <div class="mt-4 flex justify-between items-center bg-mist-gray/30 p-3 rounded-lg">
-                <div>
-                  <p class="text-[10px] text-cloud-shadow uppercase font-bold">Check-in</p>
-                  <p class="font-body-md text-on-surface">Jan 22</p>
+            <!-- Hotels -->
+            <section
+                id="hotels"
+                class="space-y-6"
+                aria-labelledby="hotels-heading"
+            >
+                <div class="flex justify-between items-end gap-2">
+                    <h2
+                        id="hotels-heading"
+                        class="font-headline-md text-[24px] text-primary"
+                    >
+                        Hotels
+                    </h2>
+                    <a
+                        href="#hotels"
+                        class="text-caption text-primary font-bold no-underline hover:underline"
+                        >See all</a
+                    >
                 </div>
-                <span class="material-symbols-outlined text-cloud-shadow" aria-hidden="true">arrow_forward</span>
-                <div class="text-right">
-                  <p class="text-[10px] text-cloud-shadow uppercase font-bold">Check-out</p>
-                  <p class="font-body-md text-on-surface">Jan 25</p>
+                <div class="space-y-4">
+                    <article
+                        class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-mist-gray group"
+                    >
+                        <div class="relative h-32 overflow-hidden">
+                            <img
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Hotel lobby"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK8CaBXLL39p53kAyh6c-lqVlMYMrYxj1etD9KdlwJXVvIvWPYs-H56PtJfou_D5obVuFqgZbpMtjNY4Ols9gip5BCsnYhF5s9Ucyuh_eCxYlblGt4DCMchXR5Er3swICFUv3w0ciZU1CwBTl8aBaJww7D_e_J9AHUHh-oW9FL4JRvcBKEzBur7lq5tSCOKZO3JzJOQq73F-OXKlIjnQxpNYFH30au29r_j4qym0_P-S4PidW6-2gBeOhe60_GMQl7hvzMVhPrf2I"
+                            />
+                            <div
+                                class="absolute top-3 right-3 glass-card px-3 py-1 rounded-full border border-mist-gray"
+                            >
+                                <p
+                                    class="font-label-bold text-caption text-primary"
+                                >
+                                    3 nights
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3
+                                class="font-label-bold text-body-lg text-deep-ink"
+                            >
+                                Grand Hyatt Taipei
+                            </h3>
+                            <p
+                                class="text-caption text-on-surface-variant flex items-center gap-1 mt-1"
+                            >
+                                <span
+                                    class="material-symbols-outlined text-sm"
+                                    aria-hidden="true"
+                                    >location_on</span
+                                >
+                                Xinyi District · sample address in HTML
+                            </p>
+                            <div
+                                class="mt-4 flex justify-between items-center bg-mist-gray/30 p-3 rounded-lg"
+                            >
+                                <div>
+                                    <p
+                                        class="text-[10px] text-cloud-shadow uppercase font-bold"
+                                    >
+                                        Check-in
+                                    </p>
+                                    <p class="font-body-md text-on-surface">
+                                        Jan 22
+                                    </p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-cloud-shadow"
+                                    aria-hidden="true"
+                                    >arrow_forward</span
+                                >
+                                <div class="text-right">
+                                    <p
+                                        class="text-[10px] text-cloud-shadow uppercase font-bold"
+                                    >
+                                        Check-out
+                                    </p>
+                                    <p class="font-body-md text-on-surface">
+                                        Jan 25
+                                    </p>
+                                </div>
+                            </div>
+                            <p
+                                class="text-caption text-on-surface-variant mt-2"
+                            >
+                                5-star hotel in Xinyi District
+                            </p>
+                        </div>
+                    </article>
+                    <article
+                        class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-mist-gray group"
+                    >
+                        <div class="relative h-32 overflow-hidden">
+                            <img
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Lake view"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXmJMA2vVdHWLk7dmQNmJ3WQbbEBKT1wozp-aWPWiDVonSXqaviZWLNQmGtN2Vq3Q8wewH4Tn1ecJv9KThPxOQqxJhJkGltnfu053dbAGga9X-lHPShA5SK5AU-78K3bco53CgcYDjDpTq1DYZuV1HmJSxTL2JiGDOMe5WpIOd2NNKdK3LR0Gl-fJm6krertX7VUc1buZUE8J4b87lXU3aKMdlfYa82roOx1tTnZd8iyJR4J7Ew8PB-MLO_3ALfKxsixuGmOcwDIo"
+                            />
+                            <div
+                                class="absolute top-3 right-3 glass-card px-3 py-1 rounded-full border border-mist-gray"
+                            >
+                                <p
+                                    class="font-label-bold text-caption text-primary"
+                                >
+                                    2 nights
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3
+                                class="font-label-bold text-body-lg text-deep-ink"
+                            >
+                                Sun Moon Lake Hotel
+                            </h3>
+                            <p
+                                class="text-caption text-on-surface-variant flex items-center gap-1 mt-1"
+                            >
+                                <span
+                                    class="material-symbols-outlined text-sm"
+                                    aria-hidden="true"
+                                    >location_on</span
+                                >
+                                Nantou County · lake view
+                            </p>
+                            <div
+                                class="mt-4 flex justify-between items-center bg-mist-gray/30 p-3 rounded-lg"
+                            >
+                                <div>
+                                    <p
+                                        class="text-[10px] text-cloud-shadow uppercase font-bold"
+                                    >
+                                        Check-in
+                                    </p>
+                                    <p class="font-body-md text-on-surface">
+                                        Jan 25
+                                    </p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-cloud-shadow"
+                                    aria-hidden="true"
+                                    >arrow_forward</span
+                                >
+                                <div class="text-right">
+                                    <p
+                                        class="text-[10px] text-cloud-shadow uppercase font-bold"
+                                    >
+                                        Check-out
+                                    </p>
+                                    <p class="font-body-md text-on-surface">
+                                        Jan 27
+                                    </p>
+                                </div>
+                            </div>
+                            <p
+                                class="text-caption text-on-surface-variant mt-2"
+                            >
+                                Lake view room with breakfast
+                            </p>
+                        </div>
+                    </article>
                 </div>
-              </div>
-              <p class="text-caption text-on-surface-variant mt-2">5-star hotel in Xinyi District</p>
-            </div>
-          </article>
-          <article class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-mist-gray group">
-            <div class="relative h-32 overflow-hidden">
-              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Lake view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXmJMA2vVdHWLk7dmQNmJ3WQbbEBKT1wozp-aWPWiDVonSXqaviZWLNQmGtN2Vq3Q8wewH4Tn1ecJv9KThPxOQqxJhJkGltnfu053dbAGga9X-lHPShA5SK5AU-78K3bco53CgcYDjDpTq1DYZuV1HmJSxTL2JiGDOMe5WpIOd2NNKdK3LR0Gl-fJm6krertX7VUc1buZUE8J4b87lXU3aKMdlfYa82roOx1tTnZd8iyJR4J7Ew8PB-MLO_3ALfKxsixuGmOcwDIo" />
-              <div class="absolute top-3 right-3 glass-card px-3 py-1 rounded-full border border-mist-gray">
-                <p class="font-label-bold text-caption text-primary">2 nights</p>
-              </div>
-            </div>
-            <div class="p-5">
-              <h3 class="font-label-bold text-body-lg text-deep-ink">Sun Moon Lake Hotel</h3>
-              <p class="text-caption text-on-surface-variant flex items-center gap-1 mt-1">
-                <span class="material-symbols-outlined text-sm" aria-hidden="true">location_on</span>
-                Nantou County · lake view
-              </p>
-              <div class="mt-4 flex justify-between items-center bg-mist-gray/30 p-3 rounded-lg">
-                <div>
-                  <p class="text-[10px] text-cloud-shadow uppercase font-bold">Check-in</p>
-                  <p class="font-body-md text-on-surface">Jan 25</p>
-                </div>
-                <span class="material-symbols-outlined text-cloud-shadow" aria-hidden="true">arrow_forward</span>
-                <div class="text-right">
-                  <p class="text-[10px] text-cloud-shadow uppercase font-bold">Check-out</p>
-                  <p class="font-body-md text-on-surface">Jan 27</p>
-                </div>
-              </div>
-              <p class="text-caption text-on-surface-variant mt-2">Lake view room with breakfast</p>
-            </div>
-          </article>
-        </div>
-      </section>
+            </section>
 
-      <!-- Expenses + progress (screen.png) + editable /5 ledger -->
-      <section id="expenses" class="space-y-6" aria-labelledby="expenses-heading">
-        <div class="flex justify-between items-center gap-2">
-          <h2 id="expenses-heading" class="font-headline-md text-[24px] text-primary">Expenses</h2>
-          <a href="#expenses" class="text-caption text-primary font-bold no-underline hover:underline">See all</a>
-        </div>
-        <div class="bg-surface-container-lowest rounded-2xl border border-mist-gray overflow-hidden shadow-sm">
-          <div class="divide-y divide-mist-gray" id="expense-list">
-            <div class="p-4 flex items-center justify-between gap-2">
-              <div class="flex items-center gap-4 min-w-0">
-                <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center shrink-0" aria-hidden="true">
-                  <span class="material-symbols-outlined text-on-primary-fixed-variant">flight</span>
+            <!-- Expenses + progress (screen.png) + editable /5 ledger -->
+            <section
+                id="expenses"
+                class="space-y-6"
+                aria-labelledby="expenses-heading"
+            >
+                <div class="flex justify-between items-center gap-2">
+                    <h2
+                        id="expenses-heading"
+                        class="font-headline-md text-[24px] text-primary"
+                    >
+                        Expenses
+                    </h2>
+                    <a
+                        href="#expenses"
+                        class="text-caption text-primary font-bold no-underline hover:underline"
+                        >See all</a
+                    >
                 </div>
-                <div class="min-w-0">
-                  <p class="font-label-bold text-on-surface">Flights</p>
-                  <p class="text-caption text-on-surface-variant truncate">Group total</p>
+                <div
+                    class="bg-surface-container-lowest rounded-2xl border border-mist-gray overflow-hidden shadow-sm"
+                >
+                    <div class="divide-y divide-mist-gray" id="expense-list">
+                        <div
+                            class="p-4 flex items-center justify-between gap-2"
+                        >
+                            <div class="flex items-center gap-4 min-w-0">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center shrink-0"
+                                    aria-hidden="true"
+                                >
+                                    <span
+                                        class="material-symbols-outlined text-on-primary-fixed-variant"
+                                        >flight</span
+                                    >
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-label-bold text-on-surface">
+                                        Flights
+                                    </p>
+                                    <p
+                                        class="text-caption text-on-surface-variant truncate"
+                                    >
+                                        Group total
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <label class="sr-only" for="amt-flights"
+                                    >Flights amount TWD</label
+                                >
+                                <input
+                                    id="amt-flights"
+                                    type="number"
+                                    min="0"
+                                    step="100"
+                                    value="25000"
+                                    class="w-24 text-right rounded-lg border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink"
+                                    data-expense-input
+                                />
+                                <p
+                                    class="text-caption text-cloud-shadow split-label"
+                                >
+                                    ea.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-4 flex items-center justify-between gap-2"
+                        >
+                            <div class="flex items-center gap-4 min-w-0">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0"
+                                    aria-hidden="true"
+                                >
+                                    <span
+                                        class="material-symbols-outlined text-on-secondary-fixed-variant"
+                                        >bed</span
+                                    >
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-label-bold text-on-surface">
+                                        Hotels
+                                    </p>
+                                    <p
+                                        class="text-caption text-on-surface-variant truncate"
+                                    >
+                                        Lodging
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <label class="sr-only" for="amt-hotels"
+                                    >Hotels amount TWD</label
+                                >
+                                <input
+                                    id="amt-hotels"
+                                    type="number"
+                                    min="0"
+                                    step="100"
+                                    value="15000"
+                                    class="w-24 text-right rounded-lg border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink"
+                                    data-expense-input
+                                />
+                                <p
+                                    class="text-caption text-cloud-shadow split-label"
+                                >
+                                    ea.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-4 flex items-center justify-between gap-2"
+                        >
+                            <div class="flex items-center gap-4 min-w-0">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center shrink-0"
+                                    aria-hidden="true"
+                                >
+                                    <span
+                                        class="material-symbols-outlined text-on-tertiary-fixed"
+                                        >restaurant</span
+                                    >
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-label-bold text-on-surface">
+                                        Food &amp; drinks
+                                    </p>
+                                    <p
+                                        class="text-caption text-on-surface-variant truncate"
+                                    >
+                                        Markets &amp; sit-down
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <label class="sr-only" for="amt-food"
+                                    >Food amount TWD</label
+                                >
+                                <input
+                                    id="amt-food"
+                                    type="number"
+                                    min="0"
+                                    step="100"
+                                    value="5000"
+                                    class="w-24 text-right rounded-lg border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink"
+                                    data-expense-input
+                                />
+                                <p
+                                    class="text-caption text-cloud-shadow split-label"
+                                >
+                                    ea.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-primary-fixed/25 p-5 border-t border-mist-gray"
+                    >
+                        <div
+                            class="flex justify-between items-center gap-2 mb-2"
+                        >
+                            <p class="font-label-bold text-deep-ink">
+                                Total spent
+                            </p>
+                            <p
+                                class="font-headline-md text-[20px] text-primary"
+                            >
+                                <span id="spent-total">45,000</span>
+                                <span
+                                    class="text-caption text-on-surface-variant font-normal"
+                                    >TWD</span
+                                >
+                                <span class="text-caption text-cloud-shadow">
+                                    /
+                                </span>
+                                <span
+                                    id="budget-cap"
+                                    class="text-on-surface-variant font-bold"
+                                    >60,000</span
+                                >
+                                <span
+                                    class="text-caption text-on-surface-variant font-normal"
+                                    >TWD</span
+                                >
+                            </p>
+                        </div>
+                        <div
+                            class="h-2 rounded-full bg-white/80 border border-mist-gray overflow-hidden"
+                            role="progressbar"
+                            aria-valuemin="0"
+                            aria-valuemax="60000"
+                            aria-valuenow="45000"
+                            id="budget-progress"
+                            aria-label="Budget used"
+                        >
+                            <div
+                                id="budget-bar"
+                                class="h-full bg-primary-container rounded-full transition-[width] duration-300"
+                                style="width: 75%"
+                            ></div>
+                        </div>
+                        <p class="text-caption text-on-surface-variant mt-2">
+                            Budget cap is editable below.
+                        </p>
+                        <div class="mt-3 flex flex-wrap gap-3 items-center">
+                            <label
+                                class="text-caption font-bold text-on-surface-variant flex items-center gap-2"
+                            >
+                                Cap (TWD)
+                                <input
+                                    id="budget-input"
+                                    type="number"
+                                    min="1000"
+                                    step="500"
+                                    value="60000"
+                                    class="w-28 rounded-lg border-outline-variant bg-white px-2 py-1 text-sm"
+                                />
+                            </label>
+                            <span
+                                class="text-caption text-primary font-bold"
+                                id="per-person-line"
+                                >5,000 TWD per person (shared)</span
+                            >
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="text-right shrink-0">
-                <label class="sr-only" for="amt-flights">Flights amount TWD</label>
-                <input id="amt-flights" type="number" min="0" step="100" value="25000" class="w-24 text-right rounded-lg border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink" data-expense-input />
-                <p class="text-caption text-cloud-shadow split-label">ea.</p>
-              </div>
-            </div>
-            <div class="p-4 flex items-center justify-between gap-2">
-              <div class="flex items-center gap-4 min-w-0">
-                <div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0" aria-hidden="true">
-                  <span class="material-symbols-outlined text-on-secondary-fixed-variant">bed</span>
+                <button
+                    type="button"
+                    class="w-full min-h-[48px] rounded-xl border-2 border-deep-ink font-label-bold text-deep-ink flex items-center justify-center gap-2 hover:bg-deep-ink hover:text-white transition-colors"
+                    id="add-expense-row"
+                >
+                    <span class="material-symbols-outlined" aria-hidden="true"
+                        >add</span
+                    >
+                    Add expense row
+                </button>
+            </section>
+
+            <!-- Daily itinerary: 6 days, timeline (DESIGN.md + screen) -->
+            <section
+                id="itinerary"
+                class="space-y-8 pb-8"
+                aria-labelledby="itinerary-heading"
+            >
+                <h2
+                    id="itinerary-heading"
+                    class="font-headline-md text-[24px] text-primary"
+                >
+                    Daily itinerary
+                </h2>
+                <div
+                    class="relative space-y-12 pl-6 border-l-2 border-mist-gray"
+                >
+                    <!-- Day 1 -->
+                    <div class="relative">
+                        <div
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-primary ring-4 ring-white flex items-center justify-center"
+                            aria-hidden="true"
+                        >
+                            <span
+                                class="material-symbols-outlined text-white text-[14px]"
+                                >check</span
+                            >
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <p
+                                    class="text-caption text-primary font-bold uppercase tracking-widest"
+                                >
+                                    Day 1 · Jan 22
+                                </p>
+                                <h3
+                                    class="font-headline-md text-[24px] text-deep-ink"
+                                >
+                                    Arrival &amp; Taipei 101
+                                </h3>
+                            </div>
+                            <div class="grid gap-3">
+                                <div
+                                    class="bg-surface-container-low p-4 rounded-xl border border-mist-gray"
+                                >
+                                    <p
+                                        class="font-label-bold text-on-surface-variant mb-1"
+                                    >
+                                        10:00 AM
+                                    </p>
+                                    <p class="text-body-md text-on-surface">
+                                        Arrival at TPE Airport
+                                    </p>
+                                </div>
+                                <div
+                                    class="bg-surface-container-low p-4 rounded-xl border border-mist-gray"
+                                >
+                                    <p
+                                        class="font-label-bold text-on-surface-variant mb-1"
+                                    >
+                                        12:00 PM
+                                    </p>
+                                    <p class="text-body-md text-on-surface">
+                                        Check-in at Grand Hyatt
+                                    </p>
+                                </div>
+                                <div
+                                    class="bg-surface-container-low p-4 rounded-xl border border-mist-gray"
+                                >
+                                    <p
+                                        class="font-label-bold text-on-surface-variant mb-1"
+                                    >
+                                        2:00 PM
+                                    </p>
+                                    <p class="text-body-md text-on-surface">
+                                        Lunch at Din Tai Fung
+                                    </p>
+                                </div>
+                                <div
+                                    class="bg-surface-container-low p-4 rounded-xl border border-mist-gray"
+                                >
+                                    <p
+                                        class="font-label-bold text-on-surface-variant mb-1"
+                                    >
+                                        4:00 PM
+                                    </p>
+                                    <p class="text-body-md text-on-surface">
+                                        Taipei 101 Observatory
+                                    </p>
+                                </div>
+                                <div
+                                    class="bg-secondary-fixed/40 p-4 rounded-xl border border-secondary-fixed"
+                                >
+                                    <p
+                                        class="font-label-bold text-on-secondary-fixed-variant mb-1"
+                                    >
+                                        7:00 PM
+                                    </p>
+                                    <p class="text-body-md text-on-surface">
+                                        Dinner at Ningxia Night Market
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Day 2 -->
+                    <div class="relative opacity-90">
+                        <div
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center text-[10px] text-white font-bold"
+                            aria-hidden="true"
+                        >
+                            2
+                        </div>
+                        <div class="space-y-2">
+                            <p
+                                class="text-caption text-on-surface-variant font-bold uppercase tracking-widest"
+                            >
+                                Day 2 · Jan 23
+                            </p>
+                            <h3
+                                class="font-headline-md text-[22px] text-deep-ink"
+                            >
+                                Culture &amp; temples
+                            </h3>
+                            <p class="text-body-md text-on-surface-variant">
+                                Longshan Temple, Chiang Kai-shek Memorial,
+                                Yongkang Street.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Day 3 -->
+                    <div class="relative opacity-90">
+                        <div
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center text-[10px] text-white font-bold"
+                            aria-hidden="true"
+                        >
+                            3
+                        </div>
+                        <div class="space-y-2">
+                            <p
+                                class="text-caption text-on-surface-variant font-bold uppercase tracking-widest"
+                            >
+                                Day 3 · Jan 24
+                            </p>
+                            <h3
+                                class="font-headline-md text-[22px] text-deep-ink"
+                            >
+                                Day trip · Jiufen / north coast
+                            </h3>
+                            <p class="text-body-md text-on-surface-variant">
+                                Bus or chartered van — confirm with Mark
+                                (driver).
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Day 4 -->
+                    <div class="relative opacity-90">
+                        <div
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center text-[10px] text-white font-bold"
+                            aria-hidden="true"
+                        >
+                            4
+                        </div>
+                        <div class="space-y-2">
+                            <p
+                                class="text-caption text-on-surface-variant font-bold uppercase tracking-widest"
+                            >
+                                Day 4 · Jan 25
+                            </p>
+                            <h3
+                                class="font-headline-md text-[22px] text-deep-ink"
+                            >
+                                Transfer toward Sun Moon Lake
+                            </h3>
+                            <p class="text-body-md text-on-surface-variant">
+                                HSR to Taichung + bus/taxi — update with real
+                                tickets.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Day 5 -->
+                    <div class="relative opacity-90">
+                        <div
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center text-[10px] text-white font-bold"
+                            aria-hidden="true"
+                        >
+                            5
+                        </div>
+                        <div class="space-y-2">
+                            <p
+                                class="text-caption text-on-surface-variant font-bold uppercase tracking-widest"
+                            >
+                                Day 5 · Jan 26
+                            </p>
+                            <h3
+                                class="font-headline-md text-[22px] text-deep-ink"
+                            >
+                                Sun Moon Lake
+                            </h3>
+                            <p class="text-body-md text-on-surface-variant">
+                                Shuishe pier, ropeway or bike path, sunset.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Day 6 -->
+                    <div class="relative opacity-90">
+                        <div
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center text-[10px] text-white font-bold"
+                            aria-hidden="true"
+                        >
+                            6
+                        </div>
+                        <div class="space-y-2">
+                            <p
+                                class="text-caption text-on-surface-variant font-bold uppercase tracking-widest"
+                            >
+                                Day 6 · Jan 27
+                            </p>
+                            <h3
+                                class="font-headline-md text-[22px] text-deep-ink"
+                            >
+                                Departure
+                            </h3>
+                            <p class="text-body-md text-on-surface-variant">
+                                Shuttle to TPE · PA 456 evening — align with
+                                your real ticket.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="min-w-0">
-                  <p class="font-label-bold text-on-surface">Hotels</p>
-                  <p class="text-caption text-on-surface-variant truncate">Lodging</p>
-                </div>
-              </div>
-              <div class="text-right shrink-0">
-                <label class="sr-only" for="amt-hotels">Hotels amount TWD</label>
-                <input id="amt-hotels" type="number" min="0" step="100" value="15000" class="w-24 text-right rounded-lg border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink" data-expense-input />
-                <p class="text-caption text-cloud-shadow split-label">ea.</p>
-              </div>
-            </div>
-            <div class="p-4 flex items-center justify-between gap-2">
-              <div class="flex items-center gap-4 min-w-0">
-                <div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center shrink-0" aria-hidden="true">
-                  <span class="material-symbols-outlined text-on-tertiary-fixed">restaurant</span>
-                </div>
-                <div class="min-w-0">
-                  <p class="font-label-bold text-on-surface">Food &amp; drinks</p>
-                  <p class="text-caption text-on-surface-variant truncate">Markets &amp; sit-down</p>
-                </div>
-              </div>
-              <div class="text-right shrink-0">
-                <label class="sr-only" for="amt-food">Food amount TWD</label>
-                <input id="amt-food" type="number" min="0" step="100" value="5000" class="w-24 text-right rounded-lg border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink" data-expense-input />
-                <p class="text-caption text-cloud-shadow split-label">ea.</p>
-              </div>
-            </div>
-          </div>
-          <div class="bg-primary-fixed/25 p-5 border-t border-mist-gray">
-            <div class="flex justify-between items-center gap-2 mb-2">
-              <p class="font-label-bold text-deep-ink">Total spent</p>
-              <p class="font-headline-md text-[20px] text-primary">
-                <span id="spent-total">45,000</span> <span class="text-caption text-on-surface-variant font-normal">TWD</span>
-                <span class="text-caption text-cloud-shadow"> / </span>
-                <span id="budget-cap" class="text-on-surface-variant font-bold">60,000</span>
-                <span class="text-caption text-on-surface-variant font-normal">TWD</span>
-              </p>
-            </div>
-            <div class="h-2 rounded-full bg-white/80 border border-mist-gray overflow-hidden" role="progressbar" aria-valuemin="0" aria-valuemax="60000" aria-valuenow="45000" id="budget-progress" aria-label="Budget used">
-              <div id="budget-bar" class="h-full bg-primary-container rounded-full transition-[width] duration-300" style="width: 75%"></div>
-            </div>
-            <p class="text-caption text-on-surface-variant mt-2">Budget cap is editable below.</p>
-            <div class="mt-3 flex flex-wrap gap-3 items-center">
-              <label class="text-caption font-bold text-on-surface-variant flex items-center gap-2">
-                Cap (TWD)
-                <input id="budget-input" type="number" min="1000" step="500" value="60000" class="w-28 rounded-lg border-outline-variant bg-white px-2 py-1 text-sm" />
-              </label>
-              <span class="text-caption text-primary font-bold" id="per-person-line">5,000 TWD per person (shared)</span>
-            </div>
-          </div>
-        </div>
-        <button type="button" class="w-full min-h-[48px] rounded-xl border-2 border-deep-ink font-label-bold text-deep-ink flex items-center justify-center gap-2 hover:bg-deep-ink hover:text-white transition-colors" id="add-expense-row">
-          <span class="material-symbols-outlined" aria-hidden="true">add</span>
-          Add expense row
+                <figure
+                    class="rounded-xl overflow-hidden border border-mist-gray shadow-sm"
+                >
+                    <img
+                        src="screen.png"
+                        alt="Reference mockup: Trip Hub mobile layout"
+                        class="w-full h-auto block bg-surface-container-low"
+                        width="390"
+                        height="844"
+                        loading="lazy"
+                    />
+                    <figcaption
+                        class="text-caption text-on-surface-variant px-3 py-2 bg-surface-container-lowest"
+                    >
+                        Design reference (<code>screen.png</code>) — swap for
+                        your own screenshot if you like.
+                    </figcaption>
+                </figure>
+            </section>
+        </main>
+
+        <!-- Bottom nav: matches screen.png labels -->
+        <nav
+            class="bottom-dock fixed bottom-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-t border-mist-gray flex justify-around items-center px-2 sm:px-4 pb-6 pt-2 shadow-sm rounded-t-xl"
+            aria-label="Primary"
+        >
+            <a
+                href="#glance"
+                class="nav-tab flex flex-col items-center justify-center rounded-full px-3 py-1 min-w-[3.5rem] text-cloud-shadow hover:text-primary-container transition-colors no-underline"
+                data-nav
+            >
+                <span class="material-symbols-outlined" aria-hidden="true"
+                    >home</span
+                >
+                <span class="font-label-bold text-caption mt-1">Home</span>
+            </a>
+            <a
+                href="#flights"
+                class="nav-tab flex flex-col items-center justify-center rounded-full px-3 py-1 min-w-[3.5rem] text-cloud-shadow hover:text-primary-container transition-colors no-underline"
+                data-nav
+            >
+                <span class="material-symbols-outlined" aria-hidden="true"
+                    >flight</span
+                >
+                <span class="font-label-bold text-caption mt-1">Flights</span>
+            </a>
+            <a
+                href="#hotels"
+                class="nav-tab flex flex-col items-center justify-center rounded-full px-3 py-1 min-w-[3.5rem] text-cloud-shadow hover:text-primary-container transition-colors no-underline"
+                data-nav
+            >
+                <span class="material-symbols-outlined" aria-hidden="true"
+                    >hotel</span
+                >
+                <span class="font-label-bold text-caption mt-1">Hotels</span>
+            </a>
+            <a
+                href="#expenses"
+                class="nav-tab flex flex-col items-center justify-center rounded-full px-3 py-1 min-w-[3.5rem] text-cloud-shadow hover:text-primary-container transition-colors no-underline"
+                data-nav
+            >
+                <span class="material-symbols-outlined" aria-hidden="true"
+                    >payments</span
+                >
+                <span class="font-label-bold text-caption mt-1">Expenses</span>
+            </a>
+            <a
+                href="#itinerary"
+                class="nav-tab flex flex-col items-center justify-center rounded-full px-3 py-1 min-w-[3.5rem] text-cloud-shadow hover:text-primary-container transition-colors no-underline"
+                data-nav
+            >
+                <span class="material-symbols-outlined" aria-hidden="true"
+                    >map</span
+                >
+                <span class="font-label-bold text-caption mt-1">Itinerary</span>
+            </a>
+        </nav>
+
+        <button
+            type="button"
+            class="fab-skip fixed bottom-24 right-4 sm:right-6 w-14 h-14 min-w-[56px] min-h-[56px] bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center z-40 transition-transform active:scale-90"
+            aria-label="Jump to expenses"
+            id="fab-add"
+        >
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true"
+                >add</span
+            >
         </button>
-      </section>
-
-      <!-- Daily itinerary: 6 days, timeline (DESIGN.md + screen) -->
-      <section id="itinerary" class="space-y-8 pb-8" aria-labelledby="itinerary-heading">
-        <h2 id="itinerary-heading" class="font-headline-md text-[24px] text-primary">Daily itinerary</h2>
-        <div class="relative space-y-12 pl-6 border-l-2 border-mist-gray">
-          <!-- Day 1 -->
-          <div class="relative">
-            <div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-primary ring-4 ring-white flex items-center justify-center" aria-hidden="true">
-              <span class="material-symbols-outlined text-white text-[14px]">check</span>
-            </div>
-            <div class="space-y-4">
-              <div>
-                <p class="text-caption text-primary font-bold uppercase tracking-widest">Day 1 · Jan 22</p>
-                <h3 class="font-headline-md text-[24px] text-deep-ink">Arrival &amp; Taipei 101</h3>
-              </div>
-              <div class="grid gap-3">
-                <div class="bg-surface-container-low p-4 rounded-xl border border-mist-gray">
-                  <p class="font-label-bold text-on-surface-variant mb-1">10:00 AM</p>
-                  <p class="text-body-md text-on-surface">Arrival at TPE Airport</p>
-                </div>
-                <div class="bg-surface-container-low p-4 rounded-xl border border-mist-gray">
-                  <p class="font-label-bold text-on-surface-variant mb-1">12:00 PM</p>
-                  <p class="text-body-md text-on-surface">Check-in at Grand Hyatt</p>
-                </div>
-                <div class="bg-surface-container-low p-4 rounded-xl border border-mist-gray">
-                  <p class="font-label-bold text-on-surface-variant mb-1">2:00 PM</p>
-                  <p class="text-body-md text-on-surface">Lunch at Din Tai Fung</p>
-                </div>
-                <div class="bg-surface-container-low p-4 rounded-xl border border-mist-gray">
-                  <p class="font-label-bold text-on-surface-variant mb-1">4:00 PM</p>
-                  <p class="text-body-md text-on-surface">Taipei 101 Observatory</p>
-                </div>
-                <div class="bg-secondary-fixed/40 p-4 rounded-xl border border-secondary-fixed">
-                  <p class="font-label-bold text-on-secondary-fixed-variant mb-1">7:00 PM</p>
-                  <p class="text-body-md text-on-surface">Dinner at Ningxia Night Market</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Day 2 -->
-          <div class="relative opacity-90">
-            <div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center text-[10px] text-white font-bold" aria-hidden="true">2</div>
-            <div class="space-y-2">
-              <p class="text-caption text-on-surface-variant font-bold uppercase tracking-widest">Day 2 · Jan 23</p>
-              <h3 class="font-headline-md text-[22px] text-deep-ink">Culture &amp; temples</h3>
-              <p class="text-body-md text-on-surface-variant">Longshan Temple, Chiang Kai-shek Memorial, Yongkang Street.</p>
-            </div>
-          </div>
-          <!-- Day 3 -->
-          <div class="relative opacity-90">
-            <div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center text-[10px] text-white font-bold" aria-hidden="true">3</div>
-            <div class="space-y-2">
-              <p class="text-caption text-on-surface-variant font-bold uppercase tracking-widest">Day 3 · Jan 24</p>
-              <h3 class="font-headline-md text-[22px] text-deep-ink">Day trip · Jiufen / north coast</h3>
-              <p class="text-body-md text-on-surface-variant">Bus or chartered van — confirm with Mark (driver).</p>
-            </div>
-          </div>
-          <!-- Day 4 -->
-          <div class="relative opacity-90">
-            <div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center text-[10px] text-white font-bold" aria-hidden="true">4</div>
-            <div class="space-y-2">
-              <p class="text-caption text-on-surface-variant font-bold uppercase tracking-widest">Day 4 · Jan 25</p>
-              <h3 class="font-headline-md text-[22px] text-deep-ink">Transfer toward Sun Moon Lake</h3>
-              <p class="text-body-md text-on-surface-variant">HSR to Taichung + bus/taxi — update with real tickets.</p>
-            </div>
-          </div>
-          <!-- Day 5 -->
-          <div class="relative opacity-90">
-            <div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center text-[10px] text-white font-bold" aria-hidden="true">5</div>
-            <div class="space-y-2">
-              <p class="text-caption text-on-surface-variant font-bold uppercase tracking-widest">Day 5 · Jan 26</p>
-              <h3 class="font-headline-md text-[22px] text-deep-ink">Sun Moon Lake</h3>
-              <p class="text-body-md text-on-surface-variant">Shuishe pier, ropeway or bike path, sunset.</p>
-            </div>
-          </div>
-          <!-- Day 6 -->
-          <div class="relative opacity-90">
-            <div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center text-[10px] text-white font-bold" aria-hidden="true">6</div>
-            <div class="space-y-2">
-              <p class="text-caption text-on-surface-variant font-bold uppercase tracking-widest">Day 6 · Jan 27</p>
-              <h3 class="font-headline-md text-[22px] text-deep-ink">Departure</h3>
-              <p class="text-body-md text-on-surface-variant">Shuttle to TPE · PA 456 evening — align with your real ticket.</p>
-            </div>
-          </div>
-        </div>
-        <figure class="rounded-xl overflow-hidden border border-mist-gray shadow-sm">
-          <img src="screen.png" alt="Reference mockup: Trip Hub mobile layout" class="w-full h-auto block bg-surface-container-low" width="390" height="844" loading="lazy" />
-          <figcaption class="text-caption text-on-surface-variant px-3 py-2 bg-surface-container-lowest">Design reference (<code>screen.png</code>) — swap for your own screenshot if you like.</figcaption>
-        </figure>
-      </section>
-    </main>
-
-    <!-- Bottom nav: matches screen.png labels -->
-    <nav class="bottom-dock fixed bottom-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-t border-mist-gray flex justify-around items-center px-2 sm:px-4 pb-6 pt-2 shadow-sm rounded-t-xl" aria-label="Primary">
-      <a href="#glance" class="nav-tab flex flex-col items-center justify-center rounded-full px-3 py-1 min-w-[3.5rem] text-cloud-shadow hover:text-primary-container transition-colors no-underline" data-nav>
-        <span class="material-symbols-outlined" aria-hidden="true">home</span>
-        <span class="font-label-bold text-caption mt-1">Home</span>
-      </a>
-      <a href="#flights" class="nav-tab flex flex-col items-center justify-center rounded-full px-3 py-1 min-w-[3.5rem] text-cloud-shadow hover:text-primary-container transition-colors no-underline" data-nav>
-        <span class="material-symbols-outlined" aria-hidden="true">flight</span>
-        <span class="font-label-bold text-caption mt-1">Flights</span>
-      </a>
-      <a href="#hotels" class="nav-tab flex flex-col items-center justify-center rounded-full px-3 py-1 min-w-[3.5rem] text-cloud-shadow hover:text-primary-container transition-colors no-underline" data-nav>
-        <span class="material-symbols-outlined" aria-hidden="true">hotel</span>
-        <span class="font-label-bold text-caption mt-1">Hotels</span>
-      </a>
-      <a href="#expenses" class="nav-tab flex flex-col items-center justify-center rounded-full px-3 py-1 min-w-[3.5rem] text-cloud-shadow hover:text-primary-container transition-colors no-underline" data-nav>
-        <span class="material-symbols-outlined" aria-hidden="true">payments</span>
-        <span class="font-label-bold text-caption mt-1">Expenses</span>
-      </a>
-      <a href="#itinerary" class="nav-tab flex flex-col items-center justify-center rounded-full px-3 py-1 min-w-[3.5rem] text-cloud-shadow hover:text-primary-container transition-colors no-underline" data-nav>
-        <span class="material-symbols-outlined" aria-hidden="true">map</span>
-        <span class="font-label-bold text-caption mt-1">Itinerary</span>
-      </a>
-    </nav>
-
-    <button type="button" class="fab-skip fixed bottom-24 right-4 sm:right-6 w-14 h-14 min-w-[56px] min-h-[56px] bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center z-40 transition-transform active:scale-90" aria-label="Jump to expenses" id="fab-add">
-      <span class="material-symbols-outlined text-2xl" aria-hidden="true">add</span>
-    </button>
-
-    <script>
-      (function () {
-        var PARTY = 5;
-
-        function formatInt(n) {
-          return Math.round(n).toLocaleString("en-US");
-        }
-
-        function eachShare(total) {
-          return total / PARTY;
-        }
-
-        function recalcExpenses() {
-          var inputs = document.querySelectorAll("[data-expense-input]");
-          var sum = 0;
-          inputs.forEach(function (input) {
-            var v = parseFloat(input.value, 10);
-            if (isNaN(v) || v < 0) v = 0;
-            sum += v;
-            var row = input.closest(".p-4");
-            var label = row && row.querySelector(".split-label");
-            if (label) label.textContent = formatInt(eachShare(v)) + " ea.";
-          });
-          var capInput = document.getElementById("budget-input");
-          var cap = capInput ? parseFloat(capInput.value, 10) : 60000;
-          if (isNaN(cap) || cap < 1) cap = 60000;
-
-          var spentEl = document.getElementById("spent-total");
-          var capEl = document.getElementById("budget-cap");
-          var bar = document.getElementById("budget-bar");
-          var progress = document.getElementById("budget-progress");
-          var perLine = document.getElementById("per-person-line");
-
-          if (spentEl) spentEl.textContent = formatInt(sum);
-          if (capEl) capEl.textContent = formatInt(cap);
-          if (perLine) perLine.textContent = formatInt(eachShare(sum)) + " TWD per person (÷" + PARTY + ")";
-
-          var pct = cap > 0 ? Math.min(100, (sum / cap) * 100) : 0;
-          if (bar) bar.style.width = pct + "%";
-          if (progress) {
-            progress.setAttribute("aria-valuenow", String(Math.round(sum)));
-            progress.setAttribute("aria-valuemax", String(Math.round(cap)));
-          }
-        }
-
-        document.addEventListener("input", function (e) {
-          if (e.target && (e.target.matches("[data-expense-input]") || e.target.id === "budget-input")) {
-            recalcExpenses();
-          }
-        });
-
-        document.getElementById("add-expense-row") &&
-          document.getElementById("add-expense-row").addEventListener("click", function () {
-            var list = document.getElementById("expense-list");
-            if (!list) return;
-            var row = document.createElement("div");
-            row.className = "p-4 flex items-center justify-between gap-2";
-            row.innerHTML =
-              '<div class="flex items-center gap-4 min-w-0">' +
-              '<div class="w-10 h-10 rounded-full bg-mist-gray flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-surface-variant">sell</span></div>' +
-              '<div class="min-w-0"><p class="font-label-bold text-on-surface" contenteditable="true">New item</p>' +
-              '<p class="text-caption text-on-surface-variant" contenteditable="true">Note</p></div></div>' +
-              '<div class="text-right shrink-0"><input type="number" min="0" step="100" value="0" class="w-24 text-right rounded-lg border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink" data-expense-input />' +
-              '<p class="text-caption text-cloud-shadow split-label">0 ea.</p></div>';
-            list.appendChild(row);
-            recalcExpenses();
-          });
-
-        document.getElementById("fab-add") &&
-          document.getElementById("fab-add").addEventListener("click", function () {
-            var el = document.getElementById("expenses");
-            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-          });
-
-        var tabs = document.querySelectorAll("[data-nav]");
-        function setActiveTab(hash) {
-          tabs.forEach(function (tab) {
-            var on = tab.getAttribute("href") === hash;
-            tab.classList.toggle("bg-primary-container/10", on);
-            tab.classList.toggle("text-primary", on);
-            tab.classList.toggle("text-cloud-shadow", !on);
-            if (on) tab.setAttribute("aria-current", "page");
-            else tab.removeAttribute("aria-current");
-          });
-        }
-
-        tabs.forEach(function (tab) {
-          tab.addEventListener("click", function () {
-            setActiveTab(tab.getAttribute("href") || "");
-          });
-        });
-
-        function onHash() {
-          var h = window.location.hash || "#glance";
-          setActiveTab(h);
-        }
-
-        window.addEventListener("hashchange", onHash);
-        document.addEventListener("DOMContentLoaded", function () {
-          recalcExpenses();
-          onHash();
-        });
-      })();
-    </script>
-  </body>
+        <script defer src="./js/site.js"></script>
+    </body>
 </html>
