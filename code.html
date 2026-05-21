@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Taiwan 2026 — Trip Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#3d494a",
+                        "on-primary-container": "#00363b",
+                        "surface-dim": "#d9dadb",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-high": "#e7e8e9",
+                        "on-surface": "#191c1d",
+                        "primary-fixed": "#87f3ff",
+                        "on-secondary-container": "#6d0005",
+                        "tertiary-container": "#cca72f",
+                        "deep-ink": "#0F1419",
+                        "secondary-fixed": "#ffdad5",
+                        "on-primary-fixed": "#001f23",
+                        "background": "#f8f9fa",
+                        "primary-container": "#00a8b5",
+                        "primary-fixed-dim": "#59d8e5",
+                        "primary": "#006971",
+                        "mist-gray": "#E8EEF4",
+                        "tertiary-fixed": "#ffe088",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#4e3d00",
+                        "outline": "#6d797b",
+                        "surface": "#f8f9fa",
+                        "surface-container-lowest": "#ffffff",
+                        "cloud-shadow": "#9FB0C3",
+                        "sky-active": "#3D9AED",
+                        "secondary": "#ac332a",
+                        "surface-container-low": "#f3f4f5",
+                        "inverse-on-surface": "#f0f1f2",
+                        "error": "#ba1a1a",
+                        "surface-container": "#edeeef",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#410001",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "slate-blue": "#1A222D",
+                        "tertiary": "#735c00",
+                        "on-secondary-fixed-variant": "#8b1a16",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-bright": "#f8f9fa",
+                        "outline-variant": "#bcc9cb",
+                        "surface-tint": "#006971",
+                        "on-primary-fixed-variant": "#004f55",
+                        "secondary-container": "#fd6e60",
+                        "secondary-fixed-dim": "#ffb4aa",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "inverse-surface": "#2e3132",
+                        "inverse-primary": "#59d8e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "24px",
+                        "container-max": "1280px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "section-gap": "120px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "caption": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-xl-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-xl-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "800"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "700"}],
+                        "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased pb-24">
+<!-- Top Navigation Bar -->
+<header class="bg-surface/70 backdrop-blur-xl border-b border-mist-gray dock top-0 sticky z-50 flex justify-between items-center px-margin-mobile h-16 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h1 class="font-headline-md text-[20px] text-deep-ink tracking-tight">Taiwan 2026</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold overflow-hidden border-2 border-white shadow-sm">
+<img alt="Traveler Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC8nXGxGHhHsyAR-_ldl87biA4R6HAREil0CH3jFzZMQU7Q6l93rAAO9MJn4UXMHoMEj3Rkm5G7nuoCcjWRsxF1CImuVlWuPE_zcuMbcDLZxosYmBXa_jedze_hEKd2t79dY0TWAQ6Wm9EWRuS679L7mmVxMJptRq4c4SkGN3S7jaHrbyqbk0PKrZywVUG5LouHJxSasuthTngWSjrDuHXhFlfb8Xbr3ZuWODOZVxhgTBFK4n80A3UKHKbH0yJt1k7Izz3oJLW4-8"/>
+</div>
+</header>
+<main class="max-w-[600px] mx-auto px-margin-mobile pt-8 space-y-10">
+<!-- Hero Branding -->
+<section class="space-y-2">
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile text-deep-ink">Trip hub</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Party of 5 · 6 days / 5 nights · Group sync</p>
+</section>
+<!-- At a Glance Section (Bento Style) -->
+<section class="space-y-6">
+<h3 class="font-headline-md text-[24px] text-primary">At a glance</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-2 bg-surface-container-lowest p-6 rounded-xl shadow-[0px_12px_32px_rgba(15,20,25,0.04)] border border-mist-gray flex items-center justify-between">
+<div>
+<p class="font-label-bold text-caption text-cloud-shadow uppercase tracking-wider">Trip Dates</p>
+<p class="font-headline-md text-[20px] text-deep-ink mt-1">Oct 12 → Oct 17</p>
+</div>
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="calendar_month">calendar_month</span>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-mist-gray flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-secondary text-2xl" data-icon="home_pin">home_pin</span>
+<div>
+<p class="font-label-bold text-caption text-cloud-shadow">Tonight</p>
+<p class="font-body-md font-bold text-on-surface">Taipei — Hotel Fun</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-mist-gray flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-tertiary text-2xl" data-icon="payments">payments</span>
+<div>
+<p class="font-label-bold text-caption text-cloud-shadow">Currency</p>
+<p class="font-body-md font-bold text-on-surface">TWD (NT$)</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-mist-gray flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="schedule">schedule</span>
+<div>
+<p class="font-label-bold text-caption text-cloud-shadow">Time Zone</p>
+<p class="font-body-md font-bold text-on-surface">Taipei (UTC+8)</p>
+</div>
+</div>
+<div class="bg-error-container/20 p-5 rounded-xl border border-error/10 flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-error text-2xl" data-icon="emergency">emergency</span>
+<div>
+<p class="font-label-bold text-caption text-on-error-container">Emergency</p>
+<p class="font-body-md font-bold text-error">110 / 119</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Travelers Section -->
+<section class="space-y-6">
+<h3 class="font-headline-md text-[24px] text-primary">Travelers</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray">
+<img alt="Alex Chen" class="w-12 h-12 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6UDvZy3fDx_xf2HoGuDx2Kzoe6XbyUiUlvPJUVihz_0BzjK3pq4RVvcSvu2Kkoi1W60jDjYT0qPc5KxIYfhqpP0mmDlEJwSSAnG-FDsLfuuJq7ySg0H2AEiPeMiglsZw5zEap9bbFbqA7MDqy2lAhALv5eiUh7bb0Khxt1rK2uItVL_InuVff6cx6vZYqHIWLU7GshEnO8BjNhrCzOUh-3GyMQiWbw38ArvzITTE7nGMZeWdXybavsif25bWuh0tV0bJULm-HQXU"/>
+<div class="flex-1">
+<p class="font-label-bold text-body-md text-deep-ink">Alex Chen</p>
+<p class="font-caption text-caption text-on-surface-variant">Primary hotel contact</p>
+</div>
+<div class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center">
+<span class="material-symbols-outlined text-cloud-shadow text-sm" data-icon="chat">chat</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray">
+<img alt="Jamie Lee" class="w-12 h-12 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoqcOIsFKsrohgXaTgOB76x7izCS3dtkL7stYoewHabb0Dk2jyCcHfEpl6VWyLHwc7rQUvKlufXZlCOapu55cR865UbCXFFZp_l5ZBeXI6q37-2YH2gLYrUCzHxccRFp71GUxReIgTQ3tKmv90cZrDA6-4LZN0BxxeiqrJ-uEzTw0BIreFsCAzOo4XrmFnlML5ZQx5d5k9rXYhO2vi6-DC7P2aMAayD7ibQyo1uC-Ko6fpocvkMHKFmxTy47QwPHVlWJs4DAti4F8"/>
+<div class="flex-1">
+<p class="font-label-bold text-body-md text-deep-ink">Jamie Lee</p>
+<p class="font-caption text-caption text-on-surface-variant">Outbound flight booking</p>
+</div>
+<div class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center">
+<span class="material-symbols-outlined text-cloud-shadow text-sm" data-icon="chat">chat</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 bg-surface-container-lowest rounded-xl border border-mist-gray">
+<img alt="Taylor Wu" class="w-12 h-12 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrj5mX2ghEh3DcRqC6RT2VOsIyFNwyzKgH09xsluBm8bWhPAzm-Qz2-4DvZd75qB-6rImo1nzGe5WB73tBpAGehrjl5UsbnTNFrD_mP056f4y7WYki5-opwTDA9mIwJZ9C4FUFNoM1AJH5fMh7LcV-7qb6b0tqrLKtOfAoELgVEvmlClfepCo3ksjXyc_y0CQgiFH3Cuql5VTmPLRGk2tcmUp3JunizZo9k4gr4brKQbDWxb7AE7Y7qPq-RhelzqudjPtVG_8on3c"/>
+<div class="flex-1">
+<p class="font-label-bold text-body-md text-deep-ink">Taylor Wu</p>
+<p class="font-caption text-caption text-on-surface-variant">Nav &amp; Transit Lead</p>
+</div>
+<div class="w-8 h-8 rounded-full bg-mist-gray flex items-center justify-center">
+<span class="material-symbols-outlined text-cloud-shadow text-sm" data-icon="chat">chat</span>
+</div>
+</div>
+<!-- ... more travelers ... -->
+<div class="flex items-center justify-center py-2">
+<button class="text-primary font-label-bold flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="add">add</span> View all 5 travelers
+                    </button>
+</div>
+</div>
+</section>
+<!-- Flights Section -->
+<section class="space-y-6">
+<h3 class="font-headline-md text-[24px] text-primary">Flights</h3>
+<div class="space-y-4">
+<!-- Outbound -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-mist-gray shadow-sm">
+<div class="bg-primary p-4 flex justify-between items-center text-on-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="flight_takeoff">flight_takeoff</span>
+<span class="font-label-bold">Outbound Flight</span>
+</div>
+<span class="font-label-bold text-caption bg-on-primary/20 px-3 py-1 rounded-full">EVA AIR BR12</span>
+</div>
+<div class="p-5 space-y-4">
+<div class="flex justify-between items-center">
+<div class="text-center">
+<p class="text-headline-md text-[24px] text-deep-ink">SFO</p>
+<p class="text-caption text-cloud-shadow uppercase">San Francisco</p>
+</div>
+<div class="flex-1 px-4 flex flex-col items-center">
+<div class="w-full h-[1px] bg-mist-gray relative">
+<span class="material-symbols-outlined absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-container bg-surface-container-lowest px-1" data-icon="flight">flight</span>
+</div>
+<p class="text-[10px] text-cloud-shadow mt-2">13h 40m</p>
+</div>
+<div class="text-center">
+<p class="text-headline-md text-[24px] text-deep-ink">TPE</p>
+<p class="text-caption text-cloud-shadow uppercase">Taipei Taoyuan</p>
+</div>
+</div>
+<div class="flex justify-between pt-4 border-t border-mist-gray">
+<div>
+<p class="text-caption text-cloud-shadow">Departure</p>
+<p class="font-label-bold text-deep-ink">Oct 12, 01:20 AM</p>
+</div>
+<div class="text-right">
+<p class="text-caption text-cloud-shadow">Confirmation</p>
+<p class="font-label-bold text-primary">EVA-78X2P</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Return -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-mist-gray shadow-sm">
+<div class="bg-on-surface-variant p-4 flex justify-between items-center text-on-primary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="flight_land">flight_land</span>
+<span class="font-label-bold">Return Flight</span>
+</div>
+<span class="font-label-bold text-caption bg-on-primary/20 px-3 py-1 rounded-full">EVA AIR BR11</span>
+</div>
+<div class="p-5 space-y-4">
+<div class="flex justify-between items-center">
+<div class="text-center">
+<p class="text-headline-md text-[24px] text-deep-ink">TPE</p>
+<p class="text-caption text-cloud-shadow uppercase">Taipei Taoyuan</p>
+</div>
+<div class="flex-1 px-4 flex flex-col items-center">
+<div class="w-full h-[1px] bg-mist-gray relative">
+<span class="material-symbols-outlined absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-on-surface-variant bg-surface-container-lowest px-1" data-icon="flight">flight</span>
+</div>
+<p class="text-[10px] text-cloud-shadow mt-2">11h 50m</p>
+</div>
+<div class="text-center">
+<p class="text-headline-md text-[24px] text-deep-ink">SFO</p>
+<p class="text-caption text-cloud-shadow uppercase">San Francisco</p>
+</div>
+</div>
+<div class="flex justify-between pt-4 border-t border-mist-gray">
+<div>
+<p class="text-caption text-cloud-shadow">Departure</p>
+<p class="font-label-bold text-deep-ink">Oct 17, 11:30 PM</p>
+</div>
+<div class="text-right">
+<p class="text-caption text-cloud-shadow">Confirmation</p>
+<p class="font-label-bold text-primary">EVA-78X2P</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Hotels Section -->
+<section class="space-y-6">
+<div class="flex justify-between items-end">
+<h3 class="font-headline-md text-[24px] text-primary">Hotels</h3>
+<p class="text-caption text-on-surface-variant mb-1">5 Nights Total</p>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-mist-gray group">
+<div class="relative h-32 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A luxurious modern hotel lobby in Taipei with minimalist design, warm ambient lighting, and sleek marble surfaces. The atmosphere is upscale and serene, featuring traditional Taiwanese art pieces integrated into a high-tech architecture. Large windows show a soft city glow at dusk, maintaining a premium light-mode aesthetic with teal and gold accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK8CaBXLL39p53kAyh6c-lqVlMYMrYxj1etD9KdlwJXVvIvWPYs-H56PtJfou_D5obVuFqgZbpMtjNY4Ols9gip5BCsnYhF5s9Ucyuh_eCxYlblGt4DCMchXR5Er3swICFUv3w0ciZU1CwBTl8aBaJww7D_e_J9AHUHh-oW9FL4JRvcBKEzBur7lq5tSCOKZO3JzJOQq73F-OXKlIjnQxpNYFH30au29r_j4qym0_P-S4PidW6-2gBeOhe60_GMQl7hvzMVhPrf2I"/>
+<div class="absolute top-3 right-3 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full">
+<p class="font-label-bold text-caption text-primary">Nights 1–2</p>
+</div>
+</div>
+<div class="p-5">
+<h4 class="font-label-bold text-body-lg text-deep-ink">CitizenM Taipei North Gate</h4>
+<p class="text-caption text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span> 
+                            No. 3, Section 1, Zhonghua Rd, Taipei
+                        </p>
+<div class="mt-4 flex justify-between items-center bg-mist-gray/30 p-3 rounded-lg">
+<div>
+<p class="text-[10px] text-cloud-shadow uppercase font-bold">Check-in</p>
+<p class="font-body-md text-on-surface">Oct 12</p>
+</div>
+<span class="material-symbols-outlined text-cloud-shadow" data-icon="arrow_forward">arrow_forward</span>
+<div class="text-right">
+<p class="text-[10px] text-cloud-shadow uppercase font-bold">Check-out</p>
+<p class="font-body-md text-on-surface">Oct 14</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-mist-gray group">
+<div class="relative h-32 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A stylish boutique hotel bedroom in Taiwan with high ceilings and expansive windows overlooking a lush mountain landscape. The room is styled with light wood furniture, clean white linens, and vibrant teal textiles that create a modern island hospitality feel. Morning sunlight streams through the window, illuminating the spacious, airy interior." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXmJMA2vVdHWLk7dmQNmJ3WQbbEBKT1wozp-aWPWiDVonSXqaviZWLNQmGtN2Vq3Q8wewH4Tn1ecJv9KThPxOQqxJhJkGltnfu053dbAGga9X-lHPShA5SK5AU-78K3bco53CgcYDjDpTq1DYZuV1HmJSxTL2JiGDOMe5WpIOd2NNKdK3LR0Gl-fJm6krertX7VUc1buZUE8J4b87lXU3aKMdlfYa82roOx1tTnZd8iyJR4J7Ew8PB-MLO_3ALfKxsixuGmOcwDIo"/>
+<div class="absolute top-3 right-3 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full">
+<p class="font-label-bold text-caption text-primary">Nights 3–5</p>
+</div>
+</div>
+<div class="p-5">
+<h4 class="font-label-bold text-body-lg text-deep-ink">Hotel Fun Linsen</h4>
+<p class="text-caption text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span> 
+                            No. 487, Linsen N Rd, Zhongshan District
+                        </p>
+<div class="mt-4 flex justify-between items-center bg-mist-gray/30 p-3 rounded-lg">
+<div>
+<p class="text-[10px] text-cloud-shadow uppercase font-bold">Check-in</p>
+<p class="font-body-md text-on-surface">Oct 14</p>
+</div>
+<span class="material-symbols-outlined text-cloud-shadow" data-icon="arrow_forward">arrow_forward</span>
+<div class="text-right">
+<p class="text-[10px] text-cloud-shadow uppercase font-bold">Check-out</p>
+<p class="font-body-md text-on-surface">Oct 17</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Budget & Expenses Section -->
+<section class="space-y-6">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-[24px] text-primary">Shared Ledger</h3>
+<div class="bg-primary-container/10 px-3 py-1 rounded-full border border-primary-container/20">
+<p class="text-primary font-label-bold text-caption">5 Way Split</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl border border-mist-gray overflow-hidden shadow-sm">
+<div class="divide-y divide-mist-gray">
+<div class="p-4 flex items-center justify-between hover:bg-mist-gray/10 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-fixed-variant" data-icon="bed">bed</span>
+</div>
+<div>
+<p class="font-label-bold text-on-surface">Hotel Block 1</p>
+<p class="text-caption text-on-surface-variant">Paid by Alex</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-deep-ink">12,500 TWD</p>
+<p class="text-caption text-cloud-shadow">2,500 ea.</p>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between hover:bg-mist-gray/10 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed-variant" data-icon="directions_transit">directions_transit</span>
+</div>
+<div>
+<p class="font-label-bold text-on-surface">HSR Passes</p>
+<p class="text-caption text-on-surface-variant">Paid by Taylor</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-deep-ink">8,000 TWD</p>
+<p class="text-caption text-cloud-shadow">1,600 ea.</p>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between hover:bg-mist-gray/10 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-fixed" data-icon="restaurant">restaurant</span>
+</div>
+<div>
+<p class="font-label-bold text-on-surface">Welcome Dinner</p>
+<p class="text-caption text-on-surface-variant">Paid by Jamie</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-deep-ink">4,500 TWD</p>
+<p class="text-caption text-cloud-shadow">900 ea.</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-high p-5 flex justify-between items-center">
+<div>
+<p class="font-label-bold text-deep-ink">Total Shared</p>
+<p class="text-caption text-on-surface-variant">Group Settle Ledger</p>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-[24px] text-primary">25,000 TWD</p>
+<p class="text-caption text-primary-container font-bold">5,000 Per Person</p>
+</div>
+</div>
+</div>
+<button class="w-full h-12 rounded-xl border-2 border-deep-ink font-label-bold text-deep-ink flex items-center justify-center gap-2 hover:bg-deep-ink hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span> Add New Expense
+            </button>
+</section>
+<!-- Itinerary Section -->
+<section class="space-y-8">
+<h3 class="font-headline-md text-[24px] text-primary">Daily Itinerary</h3>
+<div class="relative space-y-12 pl-6 border-l-2 border-mist-gray">
+<!-- Day 1 -->
+<div class="relative">
+<div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-primary ring-4 ring-white flex items-center justify-center">
+<span class="text-[10px] text-white font-bold">D1</span>
+</div>
+<div class="space-y-4">
+<div>
+<p class="text-caption text-primary font-bold uppercase tracking-widest">Oct 12 · Arrival</p>
+<h4 class="font-headline-md text-[24px] text-deep-ink">Taipei — City Intro</h4>
+</div>
+<div class="grid gap-3">
+<div class="bg-surface-container-low p-4 rounded-xl border border-mist-gray">
+<p class="font-label-bold text-on-surface-variant mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="sunny">sunny</span> Morning
+                                </p>
+<p class="text-body-md text-on-surface">Arrival at TPE. MRT Airport Express to North Gate. Store luggage at CitizenM.</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl border border-mist-gray">
+<p class="font-label-bold text-on-surface-variant mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="wb_twilight">wb_twilight</span> Afternoon
+                                </p>
+<p class="text-body-md text-on-surface">Check-in at hotel. Refresh and walk through the historic Dadaocheng area.</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl border border-mist-gray">
+<p class="font-label-bold text-on-surface-variant mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="dark_mode">dark_mode</span> Evening
+                                </p>
+<p class="text-body-md text-on-surface">Dinner at Ningxia Night Market. First taste of oyster omelets and mochi.</p>
+<div class="mt-3 p-2 bg-secondary-fixed/30 rounded border border-secondary-fixed text-caption text-on-secondary-fixed-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]" data-icon="umbrella">umbrella</span> Rain Backup: Eslite Spectrum Nanxi
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Day 2 -->
+<div class="relative opacity-60">
+<div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center">
+<span class="text-[10px] text-white font-bold">D2</span>
+</div>
+<div class="space-y-4">
+<div>
+<p class="text-caption text-on-surface-variant font-bold uppercase tracking-widest">Oct 13 · Culture</p>
+<h4 class="font-headline-md text-[24px] text-deep-ink">Temples &amp; Landmarks</h4>
+</div>
+<button class="text-primary font-label-bold flex items-center gap-2">Expand Full Day Plans <span class="material-symbols-outlined" data-icon="expand_more">expand_more</span></button>
+</div>
+</div>
+<!-- Day 3 -->
+<div class="relative opacity-60">
+<div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-cloud-shadow ring-4 ring-white flex items-center justify-center">
+<span class="text-[10px] text-white font-bold">D3</span>
+</div>
+<div class="space-y-4">
+<div>
+<p class="text-caption text-on-surface-variant font-bold uppercase tracking-widest">Oct 14 · Nature</p>
+<h4 class="font-headline-md text-[24px] text-deep-ink">Beitou &amp; Tamsui</h4>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-t border-mist-gray flex justify-around items-center px-4 pb-6 pt-2 shadow-sm rounded-t-xl">
+<div class="flex flex-col items-center justify-center bg-primary-container/10 text-primary rounded-full px-4 py-1 Active: scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-caption mt-1">Hub</span>
+</div>
+<div class="flex flex-col items-center justify-center text-cloud-shadow hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-label-bold text-caption mt-1">Itinerary</span>
+</div>
+<div class="flex flex-col items-center justify-center text-cloud-shadow hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-bold text-caption mt-1">Expenses</span>
+</div>
+<div class="flex flex-col items-center justify-center text-cloud-shadow hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-bold text-caption mt-1">Settings</span>
+</div>
+</nav>
+<!-- Floating Action Button (Primary Action for Hub) -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center z-40 transition-transform active:scale-90">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+<script>
+        // Simple micro-interaction for adding active state logic to clicks
+        document.querySelectorAll('nav div').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('nav div').forEach(t => {
+                    t.classList.remove('bg-primary-container/10', 'text-primary');
+                    t.classList.add('text-cloud-shadow');
+                });
+                tab.classList.add('bg-primary-container/10', 'text-primary');
+                tab.classList.remove('text-cloud-shadow');
+            });
+        });
+    </script>
+</body></html>
