@@ -5,8 +5,20 @@
         return Math.round(n).toLocaleString("en-US");
     }
 
+    function formatMoney(n) {
+        return Number(n).toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
+    }
+
     function eachShare(total) {
         return total / PARTY;
+    }
+
+    function parseAmount(val) {
+        var n = parseFloat(String(val).replace(/,/g, ""), 10);
+        return isNaN(n) || n < 0 ? 0 : n;
     }
 
     function recalcExpenses() {
@@ -15,8 +27,7 @@
         );
         var sum = 0;
         inputs.forEach(function (input) {
-            var v = parseFloat(input.value, 10);
-            if (isNaN(v) || v < 0) v = 0;
+            var v = parseAmount(input.value);
             sum += v;
             var row = input.closest(".p-4");
             var label = row && row.querySelector(".split-label");
@@ -25,23 +36,17 @@
                     formatInt(eachShare(v)) + " ea.";
         });
         var capInput = document.getElementById("budget-input");
-        var cap = capInput ? parseFloat(capInput.value, 10) : 60000;
+        var cap = capInput ? parseAmount(capInput.value) : 60000;
         if (isNaN(cap) || cap < 1) cap = 60000;
 
         var spentEl = document.getElementById("spent-total");
-        var capEl = document.getElementById("budget-cap");
+        var spentPerEl = document.getElementById("spent-per-person");
         var bar = document.getElementById("budget-bar");
         var progress = document.getElementById("budget-progress");
-        var perLine = document.getElementById("per-person-line");
 
-        if (spentEl) spentEl.textContent = formatInt(sum);
-        if (capEl) capEl.textContent = formatInt(cap);
-        if (perLine)
-            perLine.textContent =
-                formatInt(eachShare(sum)) +
-                " TWD per person (÷" +
-                PARTY +
-                ")";
+        if (spentEl) spentEl.textContent = formatMoney(sum);
+        if (spentPerEl)
+            spentPerEl.textContent = formatMoney(eachShare(sum));
 
         var pct = cap > 0 ? Math.min(100, (sum / cap) * 100) : 0;
         if (bar) bar.style.width = pct + "%";

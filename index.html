@@ -1332,7 +1332,7 @@
                     <a
                         href="#expenses"
                         class="text-caption text-primary font-bold no-underline hover:underline"
-                        >Soon ayusin natin to</a
+                        >Check mo this link</a
                     >
                 </div>
                 <div
@@ -1365,15 +1365,15 @@
                             </div>
                             <div class="text-right shrink-0">
                                 <label class="sr-only" for="amt-flights"
-                                    >Flights amount TWD</label
+                                    >Flights amount PHP</label
                                 >
                                 <input
+                                    readonly
                                     id="amt-flights"
-                                    type="number"
-                                    min="0"
-                                    step="100"
-                                    value="25000"
-                                    class="w-24 text-right rounded-lg border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink"
+                                    type="text"
+                                    inputmode="decimal"
+                                    value="88,340.00"
+                                    class="min-w-[7.5rem] w-28 sm:w-32 text-right rounded-lg border border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink font-variant-numeric tabular-nums"
                                     data-expense-input
                                 />
                                 <p
@@ -1409,15 +1409,15 @@
                             </div>
                             <div class="text-right shrink-0">
                                 <label class="sr-only" for="amt-hotels"
-                                    >Hotels amount TWD</label
+                                    >Hotels amount PHP</label
                                 >
                                 <input
+                                    readonly
                                     id="amt-hotels"
-                                    type="number"
-                                    min="0"
-                                    step="100"
-                                    value="15000"
-                                    class="w-24 text-right rounded-lg border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink"
+                                    type="text"
+                                    inputmode="decimal"
+                                    value="30,130.00"
+                                    class="min-w-[7.5rem] w-28 sm:w-32 text-right rounded-lg border border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink font-variant-numeric tabular-nums"
                                     data-expense-input
                                 />
                                 <p
@@ -1437,31 +1437,163 @@
                                 >
                                     <span
                                         class="material-symbols-outlined text-on-tertiary-fixed"
-                                        >restaurant</span
+                                        >tour</span
                                     >
                                 </div>
                                 <div class="min-w-0">
                                     <p class="font-label-bold text-on-surface">
-                                        Food &amp; drinks
+                                        Tour
                                     </p>
                                     <p
                                         class="text-caption text-on-surface-variant truncate"
                                     >
-                                        Markets &amp; sit-down
+                                        Taichung Day Tour
                                     </p>
                                 </div>
                             </div>
                             <div class="text-right shrink-0">
-                                <label class="sr-only" for="amt-food"
-                                    >Food amount TWD</label
+                                <label class="sr-only" for="amt-tour"
+                                    >Tour amount</label
                                 >
                                 <input
-                                    id="amt-food"
-                                    type="number"
-                                    min="0"
-                                    step="100"
-                                    value="5000"
-                                    class="w-24 text-right rounded-lg border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink"
+                                    readonly
+                                    id="amt-tour"
+                                    type="text"
+                                    inputmode="decimal"
+                                    value="0.00"
+                                    class="min-w-[7.5rem] w-28 sm:w-32 text-right rounded-lg border border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink font-variant-numeric tabular-nums"
+                                    data-expense-input
+                                />
+                                <p
+                                    class="text-caption text-cloud-shadow split-label"
+                                >
+                                    ea.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-4 flex items-center justify-between gap-2"
+                        >
+                            <div class="flex items-center gap-4 min-w-0">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-mist-gray flex items-center justify-center shrink-0 border border-primary/30"
+                                    aria-hidden="true"
+                                >
+                                    <span
+                                        class="material-symbols-outlined text-primary"
+                                        >train</span
+                                    >
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-label-bold text-on-surface">
+                                        Train
+                                    </p>
+                                    <p
+                                        class="text-caption text-on-surface-variant truncate"
+                                    >
+                                        Taipei to Taichung
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <label class="sr-only" for="amt-train"
+                                    >THSR tickets amount</label
+                                >
+                                <input
+                                    readonly
+                                    id="amt-train"
+                                    type="text"
+                                    inputmode="decimal"
+                                    value="3,558.00"
+                                    class="min-w-[7.5rem] w-28 sm:w-32 text-right rounded-lg border border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink font-variant-numeric tabular-nums"
+                                    data-expense-input
+                                />
+                                <p
+                                    class="text-caption text-cloud-shadow split-label"
+                                >
+                                    ea.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-4 flex items-center justify-between gap-2"
+                        >
+                            <div class="flex items-center gap-4 min-w-0">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center shrink-0"
+                                    aria-hidden="true"
+                                >
+                                    <span
+                                        class="material-symbols-outlined text-on-error-container"
+                                        >shield</span
+                                    >
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-label-bold text-on-surface">
+                                        Insurance
+                                    </p>
+                                    <p
+                                        class="text-caption text-on-surface-variant truncate"
+                                    >
+                                        Travel insurance
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <label class="sr-only" for="amt-insurance"
+                                    >Travel insurance amount</label
+                                >
+                                <input
+                                    readonly
+                                    id="amt-insurance"
+                                    type="text"
+                                    inputmode="decimal"
+                                    value="2,350.00"
+                                    class="min-w-[7.5rem] w-28 sm:w-32 text-right rounded-lg border border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink font-variant-numeric tabular-nums"
+                                    data-expense-input
+                                />
+                                <p
+                                    class="text-caption text-cloud-shadow split-label"
+                                >
+                                    ea.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-4 flex items-center justify-between gap-2"
+                        >
+                            <div class="flex items-center gap-4 min-w-0">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center shrink-0"
+                                    aria-hidden="true"
+                                >
+                                    <span
+                                        class="material-symbols-outlined text-on-tertiary-fixed"
+                                        >tour</span
+                                    >
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-label-bold text-on-surface">
+                                        Tour
+                                    </p>
+                                    <p
+                                        class="text-caption text-on-surface-variant truncate"
+                                    >
+                                        North Coast Tour
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <label class="sr-only" for="amt-northcoasttour"
+                                    >Tour amount</label
+                                >
+                                <input
+                                    readonly
+                                    id="amt-northcoasttour"
+                                    type="text"
+                                    inputmode="decimal"
+                                    value="0.00"
+                                    class="min-w-[7.5rem] w-28 sm:w-32 text-right rounded-lg border border-outline-variant bg-mist-gray/40 px-2 py-1 text-sm font-bold text-deep-ink font-variant-numeric tabular-nums"
                                     data-expense-input
                                 />
                                 <p
@@ -1473,33 +1605,43 @@
                         </div>
                     </div>
                     <div
-                        class="bg-primary-fixed/25 p-5 border-t border-mist-gray"
+                        class="bg-primary-fixed/25 p-5 border-t border-mist-gray space-y-3"
                     >
-                        <div
-                            class="flex justify-between items-center gap-2 mb-2"
-                        >
+                        <div class="flex justify-between items-center gap-2">
                             <p class="font-label-bold text-deep-ink">
                                 Total spent
                             </p>
                             <p
-                                class="font-headline-md text-[20px] text-primary"
+                                class="font-headline-md text-[20px] text-primary font-variant-numeric tabular-nums"
                             >
-                                <span id="spent-total">45,000</span>
                                 <span
-                                    class="text-caption text-on-surface-variant font-normal"
-                                    >TWD</span
-                                >
-                                <span class="text-caption text-cloud-shadow">
-                                    /
-                                </span>
-                                <span
-                                    id="budget-cap"
-                                    class="text-on-surface-variant font-bold"
-                                    >60,000</span
+                                    id="spent-total"
+                                    class="font-bold text-primary"
+                                    >0.00</span
                                 >
                                 <span
                                     class="text-caption text-on-surface-variant font-normal"
-                                    >TWD</span
+                                >
+                                    PHP</span
+                                >
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-center gap-2">
+                            <p
+                                class="text-sm font-semibold text-on-surface-variant"
+                            >
+                                Per person (÷5)
+                            </p>
+                            <p
+                                class="font-headline-md text-[18px] text-deep-ink font-variant-numeric tabular-nums"
+                            >
+                                <span id="spent-per-person" class="font-bold"
+                                    >0.00</span
+                                >
+                                <span
+                                    class="text-caption text-on-surface-variant font-normal"
+                                >
+                                    PHP</span
                                 >
                             </p>
                         </div>
@@ -1508,51 +1650,18 @@
                             role="progressbar"
                             aria-valuemin="0"
                             aria-valuemax="60000"
-                            aria-valuenow="45000"
+                            aria-valuenow="0"
                             id="budget-progress"
                             aria-label="Budget used"
                         >
                             <div
                                 id="budget-bar"
                                 class="h-full bg-primary-container rounded-full transition-[width] duration-300"
-                                style="width: 75%"
+                                style="width: 0%"
                             ></div>
-                        </div>
-                        <p class="text-caption text-on-surface-variant mt-2">
-                            Budget cap is editable below.
-                        </p>
-                        <div class="mt-3 flex flex-wrap gap-3 items-center">
-                            <label
-                                class="text-caption font-bold text-on-surface-variant flex items-center gap-2"
-                            >
-                                Cap (TWD)
-                                <input
-                                    id="budget-input"
-                                    type="number"
-                                    min="1000"
-                                    step="500"
-                                    value="60000"
-                                    class="w-28 rounded-lg border-outline-variant bg-white px-2 py-1 text-sm"
-                                />
-                            </label>
-                            <span
-                                class="text-caption text-primary font-bold"
-                                id="per-person-line"
-                                >5,000 TWD per person (shared)</span
-                            >
                         </div>
                     </div>
                 </div>
-                <button
-                    type="button"
-                    class="w-full min-h-[48px] rounded-xl border-2 border-deep-ink font-label-bold text-deep-ink flex items-center justify-center gap-2 hover:bg-deep-ink hover:text-white transition-colors"
-                    id="add-expense-row"
-                >
-                    <span class="material-symbols-outlined" aria-hidden="true"
-                        >add</span
-                    >
-                    Add expense row
-                </button>
             </section>
 
             <!-- Daily itinerary: 6 days, timeline (DESIGN.md + screen) -->
