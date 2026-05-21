@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Taiwan 2026 — Trip hub (5 travelers, 6 days / 5 nights)</title>
+        <style>
+            :root {
+                --bg: #0f1419;
+                --surface: #1a222d;
+                --surface-2: #232d3b;
+                --text: #e8eef4;
+                --muted: #9fb0c3;
+                --accent: #3d9aed;
+                --accent-soft: rgba(61, 154, 237, 0.18);
+                --border: #2f3d4d;
+                --ok: #5ecf8a;
+                --radius: 10px;
+                --font:
+                    system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu,
+                    Cantarell, "Noto Sans", sans-serif;
+                --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+                --nav-h: 52px;
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                margin: 0;
+                font-family: var(--font);
+                font-size: 1rem;
+                line-height: 1.55;
+                color: var(--text);
+                background: var(--bg);
+                padding-top: var(--nav-h);
+            }
+
+            a {
+                color: var(--accent);
+                text-decoration-thickness: 1px;
+                text-underline-offset: 3px;
+            }
+
+            a:focus-visible {
+                outline: 2px solid var(--accent);
+                outline-offset: 3px;
+            }
+
+            .skip {
+                position: absolute;
+                left: -9999px;
+                top: auto;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+            }
+
+            .skip:focus {
+                position: fixed;
+                left: 12px;
+                top: 12px;
+                width: auto;
+                height: auto;
+                z-index: 1000;
+                padding: 0.5rem 0.75rem;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 6px;
+            }
+
+            /* Sticky nav */
+            .site-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                display: flex;
+                align-items: center;
+                gap: 0.35rem;
+                min-height: var(--nav-h);
+                padding: 0.35rem 0.75rem;
+                background: rgba(15, 20, 25, 0.92);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow);
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .site-nav a {
+                flex: 0 0 auto;
+                padding: 0.4rem 0.65rem;
+                border-radius: 6px;
+                color: var(--text);
+                text-decoration: none;
+                font-size: 0.8rem;
+                white-space: nowrap;
+                border: 1px solid transparent;
+            }
+
+            .site-nav a:hover {
+                background: var(--surface-2);
+                border-color: var(--border);
+            }
+
+            .site-nav a:focus-visible {
+                outline: 2px solid var(--accent);
+                outline-offset: 2px;
+            }
+
+            .wrap {
+                width: 100%;
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 1rem 1.25rem 3rem;
+            }
+
+            header.hero {
+                margin-bottom: 2rem;
+            }
+
+            header.hero h1 {
+                margin: 0 0 0.35rem;
+                font-size: clamp(1.5rem, 4vw, 2rem);
+                font-weight: 700;
+                letter-spacing: -0.02em;
+            }
+
+            header.hero .tag {
+                color: var(--muted);
+                font-size: 0.95rem;
+            }
+
+            section {
+                margin-bottom: 2.25rem;
+                scroll-margin-top: calc(var(--nav-h) + 8px);
+            }
+
+            section > h2 {
+                margin: 0 0 0.75rem;
+                font-size: 1.2rem;
+                padding-bottom: 0.35rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 1rem 1.1rem;
+                box-shadow: var(--shadow);
+            }
+
+            .card + .card {
+                margin-top: 0.85rem;
+            }
+
+            .muted {
+                color: var(--muted);
+                font-size: 0.9rem;
+            }
+
+            .grid-2 {
+                display: grid;
+                gap: 0.75rem 1.25rem;
+            }
+
+            @media (min-width: 560px) {
+                .grid-2 {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+
+            dl.meta {
+                margin: 0;
+                display: grid;
+                gap: 0.35rem 1rem;
+            }
+
+            @media (min-width: 480px) {
+                dl.meta {
+                    grid-template-columns: auto 1fr;
+                }
+            }
+
+            dl.meta dt {
+                margin: 0;
+                color: var(--muted);
+                font-size: 0.85rem;
+            }
+
+            dl.meta dd {
+                margin: 0;
+            }
+
+            .travelers {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: grid;
+                gap: 0.65rem;
+            }
+
+            @media (min-width: 600px) {
+                .travelers {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            .travelers li {
+                background: var(--surface-2);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 0.65rem 0.85rem;
+            }
+
+            .travelers strong {
+                display: block;
+                margin-bottom: 0.2rem;
+            }
+
+            .table-wrap {
+                overflow-x: auto;
+                border-radius: var(--radius);
+                border: 1px solid var(--border);
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.875rem;
+                background: var(--surface);
+            }
+
+            th,
+            td {
+                padding: 0.55rem 0.65rem;
+                text-align: left;
+                border-bottom: 1px solid var(--border);
+                vertical-align: top;
+            }
+
+            th {
+                background: var(--surface-2);
+                color: var(--muted);
+                font-weight: 600;
+                white-space: nowrap;
+            }
+
+            tr:last-child td {
+                border-bottom: none;
+            }
+
+            caption {
+                caption-side: top;
+                text-align: left;
+                padding: 0.5rem 0.65rem;
+                font-weight: 600;
+                background: var(--surface-2);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .note {
+                margin-top: 0.65rem;
+                padding: 0.65rem 0.85rem;
+                background: var(--accent-soft);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                font-size: 0.88rem;
+            }
+
+            /* Expense inputs */
+            .expense-table input[type="number"] {
+                width: 100%;
+                min-width: 5rem;
+                max-width: 8rem;
+                padding: 0.35rem 0.45rem;
+                border-radius: 6px;
+                border: 1px solid var(--border);
+                background: var(--bg);
+                color: var(--text);
+                font: inherit;
+            }
+
+            .expense-table input[type="number"]:focus-visible {
+                outline: 2px solid var(--accent);
+                outline-offset: 1px;
+            }
+
+            .totals-row td {
+                font-weight: 600;
+                background: var(--surface-2);
+            }
+
+            .per-person-table td:nth-child(n + 2) {
+                text-align: right;
+                font-variant-numeric: tabular-nums;
+            }
+
+            /* Day itinerary */
+            details.day {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                margin-bottom: 0.65rem;
+                overflow: hidden;
+            }
+
+            details.day summary {
+                cursor: pointer;
+                list-style: none;
+                padding: 0.75rem 1rem;
+                font-weight: 600;
+                background: var(--surface-2);
+                border-bottom: 1px solid transparent;
+            }
+
+            details.day summary::-webkit-details-marker {
+                display: none;
+            }
+
+            details.day summary::after {
+                content: "▸";
+                float: right;
+                color: var(--muted);
+                transition: transform 0.15s ease;
+            }
+
+            details.day[open] summary {
+                border-bottom-color: var(--border);
+            }
+
+            details.day[open] summary::after {
+                transform: rotate(90deg);
+            }
+
+            details.day summary:focus-visible {
+                outline: 2px solid var(--accent);
+                outline-offset: -2px;
+            }
+
+            .day-body {
+                padding: 0.85rem 1rem 1rem;
+            }
+
+            .slot {
+                margin-bottom: 0.85rem;
+            }
+
+            .slot:last-child {
+                margin-bottom: 0;
+            }
+
+            .slot h3 {
+                margin: 0 0 0.25rem;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                color: var(--muted);
+            }
+
+            .slot p {
+                margin: 0;
+            }
+
+            .pill {
+                display: inline-block;
+                margin-top: 0.35rem;
+                padding: 0.15rem 0.45rem;
+                font-size: 0.75rem;
+                border-radius: 999px;
+                background: var(--accent-soft);
+                color: var(--text);
+                border: 1px solid var(--border);
+            }
+
+            footer {
+                margin-top: 2rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--border);
+                color: var(--muted);
+                font-size: 0.85rem;
+            }
+
+            @media print {
+                body {
+                    background: #fff;
+                    color: #111;
+                    padding-top: 0;
+                }
+
+                .site-nav,
+                .skip {
+                    display: none !important;
+                }
+
+                section {
+                    scroll-margin-top: 0;
+                }
+
+                .card,
+                details.day,
+                .table-wrap,
+                table {
+                    box-shadow: none;
+                }
+
+                a {
+                    color: #000;
+                    text-decoration: underline;
+                }
+
+                details.day {
+                    break-inside: avoid;
+                }
+
+                details.day summary::after {
+                    display: none;
+                }
+
+                details.day .day-body {
+                    display: block !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <a class="skip" href="#main">Skip to content</a>
+        <nav class="site-nav" aria-label="Page sections">
+            <a href="#glance">Glance</a>
+            <a href="#travelers">Travelers</a>
+            <a href="#flights">Flights</a>
+            <a href="#hotels">Hotels</a>
+            <a href="#expenses">Expenses</a>
+            <a href="#itinerary">Itinerary</a>
+        </nav>
+
+        <main id="main" class="wrap">
+            <header class="hero">
+                <h1>Taiwan 2026 — Trip hub</h1>
+                <p class="tag">
+                    Party of 5 · 6 days / 5 nights · One page for the whole
+                    group
+                </p>
+            </header>
+
+            <section id="glance" aria-labelledby="glance-heading">
+                <h2 id="glance-heading">At a glance</h2>
+                <div class="card">
+                    <dl class="meta">
+                        <dt>Trip dates</dt>
+                        <dd>
+                            <strong contenteditable="true">[Start date]</strong>
+                            →
+                            <strong contenteditable="true">[End date]</strong>
+                            (edit in browser)
+                        </dd>
+                        <dt>Tonight / base</dt>
+                        <dd contenteditable="true">
+                            [City — hotel name, one line everyone checks]
+                        </dd>
+                        <dt>Time zone</dt>
+                        <dd>Taiwan (National Standard Time, UTC+8)</dd>
+                        <dt>Money</dt>
+                        <dd>
+                            New Taiwan dollar (TWD, NT$) — cards common in
+                            cities; carry cash for night markets &amp; small
+                            vendors
+                        </dd>
+                        <dt>Emergency</dt>
+                        <dd>
+                            Police / fire / ambulance:
+                            <strong>110</strong> (police) ·
+                            <strong>119</strong> (fire &amp; ambulance)
+                        </dd>
+                    </dl>
+                    <p class="muted" style="margin: 1rem 0 0">
+                        Replace bracketed text with your real dates and “where
+                        we are tonight.” Keep PNRs and wallet screenshots in a
+                        private folder if you prefer not to paste them here.
+                    </p>
+                </div>
+            </section>
+
+            <section id="travelers" aria-labelledby="travelers-heading">
+                <h2 id="travelers-heading">Travelers</h2>
+                <ul class="travelers">
+                    <li>
+                        <strong contenteditable="true"
+                            >Traveler 1 — name</strong
+                        >
+                        <span class="muted" contenteditable="true"
+                            >Role: e.g. holds outbound flight booking</span
+                        >
+                    </li>
+                    <li>
+                        <strong contenteditable="true"
+                            >Traveler 2 — name</strong
+                        >
+                        <span class="muted" contenteditable="true"
+                            >Role: e.g. primary hotel contact</span
+                        >
+                    </li>
+                    <li>
+                        <strong contenteditable="true"
+                            >Traveler 3 — name</strong
+                        >
+                        <span class="muted" contenteditable="true">Role:</span>
+                    </li>
+                    <li>
+                        <strong contenteditable="true"
+                            >Traveler 4 — name</strong
+                        >
+                        <span class="muted" contenteditable="true">Role:</span>
+                    </li>
+                    <li>
+                        <strong contenteditable="true"
+                            >Traveler 5 — name</strong
+                        >
+                        <span class="muted" contenteditable="true">Role:</span>
+                    </li>
+                </ul>
+                <p class="note">
+                    Optional: add a group chat or shared photo album link in
+                    each role line (use a private link). Do not put passport
+                    numbers in this file.
+                </p>
+            </section>
+
+            <section id="flights" aria-labelledby="flights-heading">
+                <h2 id="flights-heading">Flights</h2>
+                <div class="table-wrap">
+                    <table>
+                        <caption>
+                            Outbound &amp; return (edit cells)
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Leg</th>
+                                <th scope="col">Airline / flight</th>
+                                <th scope="col">When (local)</th>
+                                <th scope="col">Airports</th>
+                                <th scope="col">Record locator</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Outbound</td>
+                                <td contenteditable="true">
+                                    [Airline] [Flight #]
+                                </td>
+                                <td contenteditable="true">
+                                    [Date, dep time] → [arr time]
+                                </td>
+                                <td contenteditable="true">
+                                    [XXX] → [TPE or other]
+                                </td>
+                                <td contenteditable="true">[PNR — optional]</td>
+                            </tr>
+                            <tr>
+                                <td>Return</td>
+                                <td contenteditable="true">
+                                    [Airline] [Flight #]
+                                </td>
+                                <td contenteditable="true">
+                                    [Date, dep time] → [arr time]
+                                </td>
+                                <td contenteditable="true">[TPE] → [XXX]</td>
+                                <td contenteditable="true">[PNR — optional]</td>
+                            </tr>
+                            <tr>
+                                <td>Other</td>
+                                <td contenteditable="true">—</td>
+                                <td contenteditable="true">—</td>
+                                <td contenteditable="true">—</td>
+                                <td contenteditable="true">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="note">
+                    Tip: note baggage allowance and whether meals are included.
+                    Check-in opens ~24–48h before departure on the airline app.
+                </p>
+            </section>
+
+            <section id="hotels" aria-labelledby="hotels-heading">
+                <h2 id="hotels-heading">Hotels</h2>
+                <div class="table-wrap">
+                    <table>
+                        <caption>
+                            Lodging (5 nights total)
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Stay</th>
+                                <th scope="col">Property</th>
+                                <th scope="col">Address / area</th>
+                                <th scope="col">In / out</th>
+                                <th scope="col">Conf. / paid by</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nights 1–2 (example)</td>
+                                <td contenteditable="true">[Hotel name]</td>
+                                <td contenteditable="true">
+                                    [Address or Google Maps pin]
+                                </td>
+                                <td contenteditable="true">
+                                    [Check-in] / [Check-out]
+                                </td>
+                                <td contenteditable="true">
+                                    [Conf #] · Paid: [name]
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nights 3–5 (example)</td>
+                                <td contenteditable="true">[Hotel name]</td>
+                                <td contenteditable="true">[Address]</td>
+                                <td contenteditable="true">
+                                    [Check-in] / [Check-out]
+                                </td>
+                                <td contenteditable="true">
+                                    [Conf #] · Paid: [name]
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>—</td>
+                                <td contenteditable="true">—</td>
+                                <td contenteditable="true">—</td>
+                                <td contenteditable="true">—</td>
+                                <td contenteditable="true">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="expenses" aria-labelledby="expenses-heading">
+                <h2 id="expenses-heading">Budget &amp; expenses</h2>
+                <div class="card">
+                    <p class="muted" style="margin-top: 0">
+                        Enter amounts in one currency (e.g. TWD). Per-line “each
+                        pays” divides by <strong>5</strong>. Add or remove rows
+                        by copying a table row in your editor.
+                    </p>
+                    <div class="table-wrap">
+                        <table
+                            class="expense-table"
+                            id="shared-ledger"
+                            aria-describedby="expense-help"
+                        >
+                            <caption>
+                                Shared ledger
+                            </caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Item</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Each (÷5)</th>
+                                    <th scope="col">Paid by</th>
+                                    <th scope="col">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="expense-rows">
+                                <tr>
+                                    <td contenteditable="true">
+                                        Hotel block 1
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            step="1"
+                                            value="0"
+                                            aria-label="Amount for Hotel block 1"
+                                        />
+                                    </td>
+                                    <td class="split-cell" data-split>0</td>
+                                    <td contenteditable="true">[Name]</td>
+                                    <td contenteditable="true">—</td>
+                                </tr>
+                                <tr>
+                                    <td contenteditable="true">
+                                        Hotel block 2
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            step="1"
+                                            value="0"
+                                            aria-label="Amount for Hotel block 2"
+                                        />
+                                    </td>
+                                    <td class="split-cell" data-split>0</td>
+                                    <td contenteditable="true">[Name]</td>
+                                    <td contenteditable="true">—</td>
+                                </tr>
+                                <tr>
+                                    <td contenteditable="true">
+                                        Transport (HSR / passes)
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            step="1"
+                                            value="0"
+                                            aria-label="Amount for Transport"
+                                        />
+                                    </td>
+                                    <td class="split-cell" data-split>0</td>
+                                    <td contenteditable="true">[Name]</td>
+                                    <td contenteditable="true">—</td>
+                                </tr>
+                                <tr>
+                                    <td contenteditable="true">
+                                        Group meals / activities
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            step="1"
+                                            value="0"
+                                            aria-label="Amount for Group meals"
+                                        />
+                                    </td>
+                                    <td class="split-cell" data-split>0</td>
+                                    <td contenteditable="true">[Name]</td>
+                                    <td contenteditable="true">—</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="totals-row">
+                                    <th scope="row">Totals</th>
+                                    <td id="total-amount">0</td>
+                                    <td id="total-split">0</td>
+                                    <td colspan="2">
+                                        <span class="muted" id="expense-help"
+                                            >Settle in cash, Venmo, or your
+                                            preferred app.</span
+                                        >
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <h3
+                    class="muted"
+                    style="font-size: 1rem; margin: 1.25rem 0 0.5rem"
+                >
+                    Per person (optional)
+                </h3>
+                <div class="table-wrap">
+                    <table class="per-person-table">
+                        <caption>
+                            Who prepaid / owes (edit manually)
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Person</th>
+                                <th scope="col">Prepaid (est.)</th>
+                                <th scope="col">Owes group</th>
+                                <th scope="col">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td contenteditable="true">Traveler 1</td>
+                                <td contenteditable="true">0</td>
+                                <td contenteditable="true">0</td>
+                                <td contenteditable="true">—</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">Traveler 2</td>
+                                <td contenteditable="true">0</td>
+                                <td contenteditable="true">0</td>
+                                <td contenteditable="true">—</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">Traveler 3</td>
+                                <td contenteditable="true">0</td>
+                                <td contenteditable="true">0</td>
+                                <td contenteditable="true">—</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">Traveler 4</td>
+                                <td contenteditable="true">0</td>
+                                <td contenteditable="true">0</td>
+                                <td contenteditable="true">—</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true">Traveler 5</td>
+                                <td contenteditable="true">0</td>
+                                <td contenteditable="true">0</td>
+                                <td contenteditable="true">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="itinerary" aria-labelledby="itinerary-heading">
+                <h2 id="itinerary-heading">Itinerary (6 days)</h2>
+                <p class="muted" style="margin-top: -0.35rem">
+                    Five nights on the ground across six calendar days (typical
+                    pattern: arrive day 1, depart morning of day 6). Tap a day
+                    to expand on your phone.
+                </p>
+
+                <details class="day" open>
+                    <summary>
+                        Day 1 — Arrival ·
+                        <span contenteditable="true">[City]</span>
+                    </summary>
+                    <div class="day-body">
+                        <div class="slot">
+                            <h3>Morning / midday</h3>
+                            <p contenteditable="true">
+                                [Flight lands — airport to hotel: MRT / taxi /
+                                private car]
+                            </p>
+                        </div>
+                        <div class="slot">
+                            <h3>Afternoon</h3>
+                            <p contenteditable="true">
+                                [Check-in, rest, light neighborhood walk]
+                            </p>
+                        </div>
+                        <div class="slot">
+                            <h3>Evening</h3>
+                            <p contenteditable="true">
+                                [Dinner reservation or night market — name +
+                                time]
+                            </p>
+                            <span class="pill" contenteditable="true"
+                                >Rain backup: [indoor plan]</span
+                            >
+                        </div>
+                        <p class="muted" style="margin: 0.75rem 0 0">
+                            Maps:
+                            <a
+                                href="https://maps.google.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >Google Maps</a
+                            >
+                            — replace with your pin URLs.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="day">
+                    <summary>
+                        Day 2 —
+                        <span contenteditable="true">[City / theme]</span>
+                    </summary>
+                    <div class="day-body">
+                        <div class="slot">
+                            <h3>Morning</h3>
+                            <p contenteditable="true">
+                                [Plan + EasyCard / transit note]
+                            </p>
+                        </div>
+                        <div class="slot">
+                            <h3>Afternoon</h3>
+                            <p contenteditable="true">[Plan]</p>
+                        </div>
+                        <div class="slot">
+                            <h3>Evening</h3>
+                            <p contenteditable="true">[Plan]</p>
+                            <span class="pill" contenteditable="true"
+                                >Rain backup:</span
+                            >
+                        </div>
+                    </div>
+                </details>
+
+                <details class="day">
+                    <summary>
+                        Day 3 —
+                        <span contenteditable="true">[City / day trip]</span>
+                    </summary>
+                    <div class="day-body">
+                        <div class="slot">
+                            <h3>Morning</h3>
+                            <p contenteditable="true">[Plan]</p>
+                        </div>
+                        <div class="slot">
+                            <h3>Afternoon</h3>
+                            <p contenteditable="true">[Plan]</p>
+                        </div>
+                        <div class="slot">
+                            <h3>Evening</h3>
+                            <p contenteditable="true">[Plan]</p>
+                            <span class="pill" contenteditable="true"
+                                >Rain backup:</span
+                            >
+                        </div>
+                    </div>
+                </details>
+
+                <details class="day">
+                    <summary>
+                        Day 4 — <span contenteditable="true">[City]</span>
+                    </summary>
+                    <div class="day-body">
+                        <div class="slot">
+                            <h3>Morning</h3>
+                            <p contenteditable="true">[Plan]</p>
+                        </div>
+                        <div class="slot">
+                            <h3>Afternoon</h3>
+                            <p contenteditable="true">[Plan]</p>
+                        </div>
+                        <div class="slot">
+                            <h3>Evening</h3>
+                            <p contenteditable="true">[Plan]</p>
+                            <span class="pill" contenteditable="true"
+                                >Rain backup:</span
+                            >
+                        </div>
+                    </div>
+                </details>
+
+                <details class="day">
+                    <summary>
+                        Day 5 — <span contenteditable="true">[City]</span>
+                    </summary>
+                    <div class="day-body">
+                        <div class="slot">
+                            <h3>Morning</h3>
+                            <p contenteditable="true">[Plan]</p>
+                        </div>
+                        <div class="slot">
+                            <h3>Afternoon</h3>
+                            <p contenteditable="true">[Plan]</p>
+                        </div>
+                        <div class="slot">
+                            <h3>Evening</h3>
+                            <p contenteditable="true">
+                                [Last big dinner / packing]
+                            </p>
+                            <span class="pill" contenteditable="true"
+                                >Rain backup:</span
+                            >
+                        </div>
+                    </div>
+                </details>
+
+                <details class="day">
+                    <summary>
+                        Day 6 — Departure ·
+                        <span contenteditable="true">[City → airport]</span>
+                    </summary>
+                    <div class="day-body">
+                        <div class="slot">
+                            <h3>Morning</h3>
+                            <p contenteditable="true">
+                                [Checkout, buffer to airport, flight time]
+                            </p>
+                        </div>
+                        <div class="slot">
+                            <h3>Transit tips</h3>
+                            <p contenteditable="true">
+                                [Airport MRT / taxi stand / meet point]
+                            </p>
+                        </div>
+                        <div class="slot">
+                            <h3>Notes</h3>
+                            <p contenteditable="true">
+                                [VAT refund counter if applicable · lounge]
+                            </p>
+                        </div>
+                    </div>
+                </details>
+            </section>
+
+            <footer>
+                <p>
+                    Single-file trip hub — save <code>index.html</code> and
+                    share privately. Remember to
+                    <strong>Save</strong> (Cmd/Ctrl+S) after editing if your
+                    browser supports saving the file; for persistent edits, edit
+                    in VS Code / Cursor and refresh.
+                </p>
+            </footer>
+        </main>
+
+        <script>
+            (function () {
+                var PARTY = 5;
+
+                function formatNum(n) {
+                    return Math.round(n * 100) / 100;
+                }
+
+                function recalc() {
+                    var tbody = document.getElementById("expense-rows");
+                    if (!tbody) return;
+                    var inputs = tbody.querySelectorAll('input[type="number"]');
+                    var total = 0;
+                    inputs.forEach(function (input) {
+                        var row = input.closest("tr");
+                        var v = parseFloat(input.value, 10);
+                        if (isNaN(v) || v < 0) v = 0;
+                        total += v;
+                        var splitCell =
+                            row && row.querySelector("[data-split]");
+                        if (splitCell) {
+                            splitCell.textContent = formatNum(v / PARTY);
+                        }
+                    });
+                    var ta = document.getElementById("total-amount");
+                    var ts = document.getElementById("total-split");
+                    if (ta) ta.textContent = formatNum(total);
+                    if (ts) ts.textContent = formatNum(total / PARTY);
+                }
+
+                document.addEventListener("input", function (e) {
+                    if (
+                        e.target &&
+                        e.target.matches("#expense-rows input[type='number']")
+                    ) {
+                        recalc();
+                    }
+                });
+
+                document.addEventListener("DOMContentLoaded", recalc);
+
+                window.addEventListener("beforeprint", function () {
+                    document
+                        .querySelectorAll("details.day")
+                        .forEach(function (d) {
+                            d.setAttribute("open", "");
+                        });
+                });
+            })();
+        </script>
+    </body>
+</html>
